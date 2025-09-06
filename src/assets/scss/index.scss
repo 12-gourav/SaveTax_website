@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lato", sans-serif;
+}
+
+$primary: #26358c;
+$secondary: #fd0109;
+$text: #a8a8a8;
+
+header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 100px;
+  border-bottom: 1px solid rgb(240, 240, 240);
+  height: 50px;
+  .left {
+    h2 {
+      color: $primary;
+      font-size: 1.3rem;
+      font-weight: 600;
+      span {
+        color: $secondary;
+      }
+    }
+  }
+  .right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+    a {
+      text-decoration: none;
+      color: #6d6d6d;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+    a.active {
+      color: #26358c;
+    }
+    a:hover {
+      color: #26358c;
+    }
+  }
+}
+
+
+
+section.banner{
+    width: 100%;
+    padding: 10px 100px;
+    height: calc(100vh - 50px);
+    display: flex;
+    align-items: center;
+    .left{
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        .tag-btn{
+            background: #fff5f5;
+            border-radius: 50px;
+            width: fit-content;
+            padding: 10px 20px;
+            color: #000;
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+
+        }
+        h1{
+            font-size: 2.8rem;
+            color: #000000;
+            font-weight: 600;
+            span{
+                color: #26358c;
+            }
+        }
+        h4{
+            margin-top: 1rem;
+            color: #6d6d6d;
+            font-weight: 500;
+            font-size: 1rem;
+            line-height: 1.4rem;
+        }
+        p{
+            font-size: 0.8rem;
+            color: #6d6d6d;
+            line-height: 1.4rem;
+            text-align: justify;
+            margin-top: 1rem;
+        }
+        button{
+            width: fit-content;
+            border: none;
+            outline: none;
+            background: $secondary;
+            margin-top: 1rem;
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            color: #fff;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        }
+    }
+    .right{
+        width: 50%;
+        padding-left: 1rem;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+}
