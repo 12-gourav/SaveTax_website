@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { serviceData, serviceCategory } from "../constants/services";
+import { motion } from "framer-motion";
 
 const HomeServices = () => {
   const [active, setActiveTab] = useState("Compliance");
@@ -25,13 +26,39 @@ const HomeServices = () => {
           <div className="tab_body">
             {serviceData
               ?.filter((f) => f.category === active)
-              ?.map((d) => (
-                <div className="cards" key={d.id}>
-                  <div className="ct">{d.title[0]}</div>
-                  <h2>{d.title}</h2>
-                  <p>{d.long_description?.slice(0,140)+" ..."}</p>
-                </div>
-              ))}
+              ?.map((d, i) =>
+                i % 2 === 0 ? (
+                  <motion.div
+                    initial={{ x: -150, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ type: "spring", stiffness: 80, damping: 20 }}
+                    className="cards"
+                    key={d.id}
+                  >
+                    <div className="ct">
+                      <i className="bx bxs-leaf"></i>
+                    </div>
+                    <h2>{d.title}</h2>
+                    <p>{d.long_description?.slice(0, 140) + " ..."}</p>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ x: 150, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ type: "spring", stiffness: 80, damping: 20 }}
+                    className="cards"
+                    key={d.id}
+                  >
+                    <div className="ct">
+                      <i className="bx bxs-leaf"></i>
+                    </div>
+                    <h2>{d.title}</h2>
+                    <p>{d.long_description?.slice(0, 140) + " ..."}</p>
+                  </motion.div>
+                )
+              )}
           </div>
         </div>
       </div>

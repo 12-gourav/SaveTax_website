@@ -1,11 +1,18 @@
 import img from "../assets/img/about.jpg";
+import { motion } from "framer-motion";
 const About = () => {
   return (
     <section className="about">
       <h3>About Us</h3>
       <p>We Handle Taxes, You Handle Growth</p>
       <div className="container">
-        <div className="left">
+        <motion.div
+          initial={{ x: -150, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          className="left"
+        >
           <p>
             At <span>SaveTax</span>, we believe managing taxes and compliances
             should be simple, transparent, and stress-free. Our mission is to
@@ -33,9 +40,15 @@ const About = () => {
             your business while we take care of the numbers.
           </p>
           <button>Learn More</button>
-        </div>
+        </motion.div>
 
-        <div className="right">
+        <motion.div
+          initial={{ x: 150, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ type: "spring", stiffness: 80, damping: 20 }}
+          className="right"
+        >
           <div className="img">
             <img src={img} alt="img" />
             <div className="pulse">
@@ -44,7 +57,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { benefits } from "../constants/home";
+import { motion } from "framer-motion";
 
 const BannerTwo = () => {
   return (
@@ -14,12 +15,31 @@ const BannerTwo = () => {
         </p>
       </div>
       <div className="right">
-        {benefits?.map((d, i) => (
-          <div className="card">
-            <h4>{d.title}</h4>
-            <p>{d.description}</p>
-          </div>
-        ))}
+        {benefits?.map((d, i) =>
+          i % 2 === 0 ? (
+            <motion.div
+              initial={{ x: -150, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ type: "spring", stiffness: 80, damping: 20 }}
+              className="card"
+            >
+              <h4>{d.title}</h4>
+              <p>{d.description}</p>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ x: 150, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: false, amount: 0.2 }}
+              transition={{ type: "spring", stiffness: 80, damping: 20 }}
+              className="card"
+            >
+              <h4>{d.title}</h4>
+              <p>{d.description}</p>
+            </motion.div>
+          )
+        )}
       </div>
     </section>
   );

@@ -5,16 +5,22 @@ import BannerTwo from "../components/BannerTwo";
 import About from "../components/About";
 import HomeServices from "../components/HomeServices";
 import News from "../components/News";
+import Faq from "../components/Faq";
+import Footrer from "../components/Footrer";
+import Newsletter from "../components/Newsletter";
 
 const Home = () => {
   return (
     <>
       <Navbar />
+      <News />
       <Banner />
-      <News/>
       <BannerTwo />
       <About />
-      <HomeServices/>
+      <HomeServices />
+      <Newsletter/>
+      <Faq />
+      <Footrer/>
     </>
   );
 };

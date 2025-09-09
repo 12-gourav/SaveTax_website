@@ -1,10 +1,17 @@
-import img from "../assets/img/banner.svg";
+import img from "../assets/img/banner1.svg";
 import Typewriter from "typewriter-effect";
+import {motion} from "framer-motion"
 
 const Banner = () => {
   return (
     <section className="banner">
-      <div className="left">
+      <motion.div
+        initial={{ x: -150, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ type: "spring", stiffness: 80, damping: 20 }}
+        className="left"
+      >
         <div className="tag-btn">Easily Extend Your Tax Deadline</div>
 
         <h1>
@@ -33,7 +40,7 @@ const Banner = () => {
           tax filing solutions are designed to meet your unique financial needs.
         </p>
         <button>Get Started</button>
-      </div>
+      </motion.div>
       <div className="right">
         <img src={img} alt="banner image" />
       </div>
