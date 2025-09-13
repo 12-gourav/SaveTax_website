@@ -1,3 +1,19 @@
+import img1 from "../assets/icons/itr.png";
+import gst from "../assets/icons/gst.png";
+import tds from "../assets/icons/tds.png";
+import roc from "../assets/icons/roc.png";
+import red from "../assets/icons/red_icon.png";
+import card1 from "../assets/icons/card1.png";
+import calc from "../assets/icons/calc.png";
+import pedit from "../assets/icons/p-edit.png";
+import oedit from "../assets/icons/o-edit.png";
+import rr from "../assets/icons/rr.png";
+import grr from "../assets/icons/grr.png";
+import prr from "../assets/icons/prr.png"
+import brr from "../assets/icons/brr.png"
+import support from "../assets/icons/support.png"
+
+
 export const serviceData = [
   {
     id: "income-tax-returns",
@@ -24,6 +40,9 @@ export const serviceData = [
         "Save Tax filing",
       ],
     },
+    color: "oklch(97% 0.014 254.604)",
+    textColor: "oklch(62.3% 0.214 259.815)",
+    img: img1,
   },
   {
     id: "gst-returns",
@@ -45,6 +64,9 @@ export const serviceData = [
         "Expert GST return filing services including GSTR-1, GSTR-3B & annual filing. Ensure compliance, claim ITC & avoid penalties with Save Tax.",
       keywords: ["GST filing", "GSTR-3B", "GSTR-1 filing", "GST return online"],
     },
+    color: "oklch(96.9% 0.016 293.756)",
+    textColor: "oklch(60.6% 0.25 292.717)",
+    img: gst,
   },
   {
     id: "tds-returns",
@@ -70,6 +92,9 @@ export const serviceData = [
         "TDS compliance",
       ],
     },
+    color: "oklch(98% 0.016 73.684)",
+    textColor: "oklch(70.5% 0.213 47.604)",
+    img: tds,
   },
   {
     id: "roc-annual-returns",
@@ -96,6 +121,9 @@ export const serviceData = [
         "company annual return",
       ],
     },
+    color: "oklch(98.2% 0.018 155.826)",
+    textColor: "oklch(79.2% 0.209 151.711)",
+    img: roc,
   },
   {
     id: "ptrc-ptec",
@@ -121,6 +149,9 @@ export const serviceData = [
         "PTRC returns",
       ],
     },
+    color: "oklch(97.1% 0.013 17.38)",
+    textColor: "oklch(63.7% 0.237 25.331)",
+    img: red,
   },
   {
     id: "accounting-bookkeeping",
@@ -147,6 +178,9 @@ export const serviceData = [
         "business accounts India",
       ],
     },
+    color: "oklch(98.2% 0.018 155.826)",
+    textColor: "oklch(79.2% 0.209 151.711)",
+    img: calc,
   },
   {
     id: "pan-tan-application",
@@ -171,6 +205,9 @@ export const serviceData = [
         "PAN online",
       ],
     },
+    color: "oklch(97% 0.014 254.604)",
+    textColor: "oklch(62.3% 0.214 259.815)",
+    img: card1,
   },
   {
     id: "aadhaar-update",
@@ -195,6 +232,9 @@ export const serviceData = [
         "Aadhaar services",
       ],
     },
+    color: "oklch(96.9% 0.016 293.756)",
+    textColor: "oklch(60.6% 0.25 292.717)",
+    img: pedit,
   },
   {
     id: "dsc-application",
@@ -220,6 +260,9 @@ export const serviceData = [
         "DSC online",
       ],
     },
+    color: "oklch(98% 0.016 73.684)",
+    textColor: "oklch(70.5% 0.213 47.604)",
+    img: oedit,
   },
   {
     id: "gst-registration",
@@ -244,6 +287,9 @@ export const serviceData = [
         "GST compliance",
       ],
     },
+    color: "oklch(98.2% 0.018 155.826)",
+    textColor: "oklch(79.2% 0.209 151.711)",
+    img: grr,
   },
   {
     id: "iso-registration",
@@ -268,6 +314,9 @@ export const serviceData = [
         "ISO services",
       ],
     },
+    color: "oklch(97.1% 0.013 17.38)",
+    textColor: "oklch(63.7% 0.237 25.331)",
+    img: rr,
   },
   {
     id: "company-formation",
@@ -293,6 +342,9 @@ export const serviceData = [
         "private limited company registration",
       ],
     },
+    color: "oklch(96.9% 0.016 293.756)",
+    textColor: "oklch(60.6% 0.25 292.717)",
+    img: pedit,
   },
   {
     id: "huf-partnership-registration",
@@ -317,6 +369,9 @@ export const serviceData = [
         "business registration",
       ],
     },
+    color: "oklch(97% 0.014 254.604)",
+    textColor: "oklch(62.3% 0.214 259.815)",
+    img: img1,
   },
   {
     id: "iec-registration",
@@ -341,6 +396,9 @@ export const serviceData = [
         "import export registration",
       ],
     },
+    color:"oklch(97.7% 0.017 320.058)",
+    textColor:"oklch(74% 0.238 322.16)",
+    img:prr
   },
   {
     id: "msme-registration",
@@ -365,6 +423,9 @@ export const serviceData = [
         "MSME online",
       ],
     },
+    color:"oklch(98.4% 0.003 247.858)",
+    textColor:"oklch(20.8% 0.042 265.755)",
+    img:brr
   },
   {
     id: "gumasta-license",
@@ -390,6 +451,9 @@ export const serviceData = [
         "business license",
       ],
     },
+    color: "oklch(96.9% 0.016 293.756)",
+    textColor: "oklch(60.6% 0.25 292.717)",
+    img: pedit,
   },
   {
     id: "fssai-license",
@@ -414,6 +478,9 @@ export const serviceData = [
         "food business compliance",
       ],
     },
+    color: "oklch(98% 0.016 73.684)",
+    textColor: "oklch(70.5% 0.213 47.604)",
+    img: oedit,
   },
   {
     id: "trademark-patent",
@@ -438,6 +505,9 @@ export const serviceData = [
         "brand protection",
       ],
     },
+    color: "oklch(97% 0.014 254.604)",
+    textColor: "oklch(62.3% 0.214 259.815)",
+    img: img1,
   },
   {
     id: "contact-help",
@@ -462,6 +532,9 @@ export const serviceData = [
         "service assistance",
       ],
     },
+    img:support,
+      color: "oklch(97% 0.014 254.604)",
+    textColor: "oklch(62.3% 0.214 259.815)",
   },
 ];
 

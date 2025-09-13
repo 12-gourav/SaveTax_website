@@ -1,3 +1,10 @@
+import img from "../assets/img/dishtv.png"
+import img1 from "../assets/img/tata.png"
+import img2 from "../assets/img/hcl.png"
+import img3 from "../assets/img/tcs.png"
+import img4 from "../assets/img/xero.png"
+
+
 export const news = [
   {
     "id": "gst-reforms-2025",
@@ -50,3 +57,46 @@ export const news = [
     "short_description": "Government announces additional tax incentives and subsidies for registered MSMEs."
   }
 ]
+
+
+
+
+
+export const companyList = [
+  {
+    id:1,
+    img:img
+  },
+    {
+    id:2,
+    img:img1
+  },
+    {
+    id:3,
+    img:img2
+  },
+    {
+    id:4,
+    img:img3
+  },
+    {
+    id:5,
+    img:img4
+  },
+    {
+    id:6,
+    img:img
+  }
+]
+
+
+        // <Typewriter
+        //     options={{
+        //       strings: [
+        //         "  Save Tax helps you file taxes quickly, accurately, and stress-free. Our expert services ensure compliance while maximizing your savings.",
+        //         "Save Tax makes tax filing simple, fast, and stress-free. Our experts ensure accuracy, compliance, and maximum savings—so you can keep more of what you earn.",
+        //       ],
+        //       autoStart: true,
+        //       loop: true,
+        //     }}
+        //   />

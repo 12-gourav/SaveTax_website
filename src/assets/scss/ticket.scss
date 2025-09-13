@@ -1,0 +1,42 @@
+.ticker {
+  background: #0a66c2; // dark background
+  color: white;
+  overflow: hidden;
+  white-space: nowrap;
+  height: 30px;
+
+  &-content {
+    display: inline-block;
+    will-change: transform;
+  }
+
+  &-row {
+    display: inline-flex;
+    align-items: center;
+  }
+  .ticker-content {
+    height: 30px;
+    display: flex;
+    align-items: center;
+  }
+  .ticker-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    margin-top: 0;
+
+    .symbol {
+      font-size: 12px;
+      font-weight: 400;
+      color: #fff; // blue-300
+      margin-right: 4px;
+    }
+
+    .divider {
+      margin: 0 8px;
+      color: #bebebe; // gray
+      font-size: 12px;
+    }
+  }
+}
+
