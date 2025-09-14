@@ -9,10 +9,10 @@ import pedit from "../assets/icons/p-edit.png";
 import oedit from "../assets/icons/o-edit.png";
 import rr from "../assets/icons/rr.png";
 import grr from "../assets/icons/grr.png";
-import prr from "../assets/icons/prr.png"
-import brr from "../assets/icons/brr.png"
-import support from "../assets/icons/support.png"
-
+import prr from "../assets/icons/prr.png";
+import brr from "../assets/icons/brr.png";
+import support from "../assets/icons/support.png";
+import { color } from "framer-motion";
 
 export const serviceData = [
   {
@@ -396,9 +396,9 @@ export const serviceData = [
         "import export registration",
       ],
     },
-    color:"oklch(97.7% 0.017 320.058)",
-    textColor:"oklch(74% 0.238 322.16)",
-    img:prr
+    color: "oklch(97.7% 0.017 320.058)",
+    textColor: "oklch(74% 0.238 322.16)",
+    img: prr,
   },
   {
     id: "msme-registration",
@@ -423,9 +423,9 @@ export const serviceData = [
         "MSME online",
       ],
     },
-    color:"oklch(98.4% 0.003 247.858)",
-    textColor:"oklch(20.8% 0.042 265.755)",
-    img:brr
+    color: "oklch(98.4% 0.003 247.858)",
+    textColor: "oklch(20.8% 0.042 265.755)",
+    img: brr,
   },
   {
     id: "gumasta-license",
@@ -532,8 +532,8 @@ export const serviceData = [
         "service assistance",
       ],
     },
-    img:support,
-      color: "oklch(97% 0.014 254.604)",
+    img: support,
+    color: "oklch(97% 0.014 254.604)",
     textColor: "oklch(62.3% 0.214 259.815)",
   },
 ];
@@ -558,5 +558,147 @@ export const serviceCategory = [
     id: 1,
     icon: <i className="bx bx-support"></i>,
     title: "Support",
+  },
+];
+
+export const circularServices = [
+  {
+    id: "1",
+    color: "oklch(70.5% 0.213 47.604)",
+    bg: "oklch(98% 0.016 73.684)",
+    short:
+      "Save Tax – Your trusted partner for simple, reliable, and stress-free tax solutions.",
+    long: [
+      {
+        id: "a",
+        title: "Trusted Expertise",
+        dis: "Backed by experienced tax professionals ensuring accuracy and compliance.",
+      },
+      {
+        id: "b",
+        title: "Reliable Support",
+        dis: "Always available to guide you with consistent and dependable service.",
+      },
+      {
+        id: "c",
+        title: "Secure Process",
+        dis: "Your financial data is handled with complete confidentiality and care.",
+      },
+    ],
+  },
+  {
+    id: "2",
+    short: "Proficiency that delivers expert solutions tailored to your needs.",
+    color: "oklch(58.5% 0.233 277.117)",
+    bg: "oklch(96.2% 0.018 272.314)",
+    long: [
+      {
+        id: "a",
+        title: "Error-Free Filing",
+        dis: "We ensure every detail is precise to avoid penalties or delays.",
+      },
+      {
+        id: "b",
+        title: "Regulation Compliance",
+        dis: "Always updated with the latest tax laws and government guidelines.",
+      },
+      {
+        id: "c",
+        title: "Attention to Detail",
+        dis: "Every document is carefully reviewed to guarantee accuracy.",
+      },
+    ],
+  },
+  {
+    id: "3",
+    short: "Accuracy that ensures error-free tax filing every time.",
+    color: "oklch(72.3% 0.219 149.579)",
+    bg: "oklch(98.2% 0.018 155.826)",
+    long: [
+      {
+        id: "a",
+        title: "Smart Tools",
+        dis: "AI-powered tools simplify tax filing and reduce manual errors.",
+      },
+      {
+        id: "b",
+        title: "Time-Saving",
+        dis: "Automated workflows speed up the entire tax filing process.",
+      },
+      {
+        id: "c",
+        title: "Seamless Integration",
+        dis: "Easy integration with financial data for smooth operations.",
+      },
+    ],
+  },
+  {
+    id: "4",
+    short: "Knowledge that keeps you ahead in tax planning and compliance.",
+    color: "oklch(65.6% 0.241 354.308)",
+    bg: "oklch(97.1% 0.014 343.198)",
+    long: [
+      {
+        id: "a",
+        title: "Skilled Experts",
+        dis: "Handled by qualified professionals with proven tax expertise.",
+      },
+      {
+        id: "b",
+        title: "Tailored Solutions",
+        dis: "We adapt strategies to meet your unique tax requirements.",
+      },
+      {
+        id: "c",
+        title: "Professional Approach",
+        dis: "Every case is managed with precision and dedication.",
+      },
+    ],
+  },
+  {
+    id: "5",
+    short: "Automation that makes tax filing faster and hassle-free.",
+    color: "oklch(64.5% 0.246 16.439)",
+    bg: "oklch(96.9% 0.015 12.422)",
+    long: [
+      {
+        id: "a",
+        title: "Updated Insights",
+        dis: "We stay current with changing tax rules and regulations.",
+      },
+      {
+        id: "b",
+        title: "Informed Guidance",
+        dis: "Receive expert advice backed by in-depth tax knowledge.",
+      },
+      {
+        id: "c",
+        title: "Educational Support",
+        dis: "We help you understand taxes better for smarter decisions.",
+      },
+    ],
+  },
+  {
+    id: "6",
+    short: "Insights that empower better financial and tax decisions.",
+    color: "oklch(70.7% 0.165 254.624)",
+    bg: "oklch(97% 0.014 254.604)",
+    long: [
+      {
+        id: "a",
+        title: "Data-Driven Insights",
+        dis: "Clear reports and analytics to help you save more efficiently.",
+      },
+      {
+        id: "b",
+        title: "Future Planning",
+        dis: "Insights that prepare you for upcoming tax obligations.",
+      },
+      {
+        id: "c",
+        title: "Strategic Advantage",
+        dis: "Turn financial data into strategies for maximum tax benefits.",
+      },
+    ],
   },
 ];

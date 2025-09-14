@@ -1,6 +1,6 @@
-import img from "../assets/img/b1.jpg";
-import img2 from "../assets/img/b2.jpg";
-import img3 from "../assets/img/b3.jpg";
+import img from "../assets/img/optimize/b1.jpg";
+import img2 from "../assets/img/optimize/b2.jpg";
+import img3 from "../assets/img//optimize/b3.jpg";
 
 import { Carousel } from "antd";
 

@@ -89,14 +89,3 @@ export const companyList = [
   }
 ]
 
-
-        // <Typewriter
-        //     options={{
-        //       strings: [
-        //         "  Save Tax helps you file taxes quickly, accurately, and stress-free. Our expert services ensure compliance while maximizing your savings.",
-        //         "Save Tax makes tax filing simple, fast, and stress-free. Our experts ensure accuracy, compliance, and maximum savings—so you can keep more of what you earn.",
-        //       ],
-        //       autoStart: true,
-        //       loop: true,
-        //     }}
-        //   />

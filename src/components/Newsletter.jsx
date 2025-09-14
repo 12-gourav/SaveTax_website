@@ -1,4 +1,4 @@
-import img from "../assets/img/news.jpg";
+import img from "../assets/img/optimize/news.jpg";
 import { motion } from "framer-motion";
 
 const Newsletter = () => {

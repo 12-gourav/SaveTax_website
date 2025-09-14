@@ -9,6 +9,9 @@ import Footrer from "../components/Footrer";
 import Newsletter from "../components/Newsletter";
 import Ticket from "../constants/Ticket";
 import ConsultModal from "../components/ConsultModal";
+import CustomerReview from "../components/CustomerReview";
+import CircularBenifits from "../components/CircularBenifits";
+import OurClients from "../components/OurClients";
 
 const Home = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -39,7 +42,10 @@ const Home = () => {
       <Banner />
       <Ticket />
       <HomeServices />
+      <OurClients/>
       <BannerTwo />
+      <CircularBenifits/>
+      <CustomerReview/>
       <About />
 
       <Newsletter />
