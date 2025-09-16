@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import { useLocation } from "react-router-dom";
 import img from "../assets/img/optimize/b1.jpg";
 import { Anchor } from "antd";
+import Footrer from "../components/Footrer";
 
 const ServiceDetail = () => {
   const location = useLocation();
@@ -299,6 +300,7 @@ const ServiceDetail = () => {
           </div>
         </div>
       </section>
+      <Footrer/>
     </>
   );
 };
