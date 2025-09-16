@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { serviceData } from "../constants/services";
-
 import img from "../assets/img/cute.png";
-import ConsultModal from "./ConsultModal";
-const Navbar = ({setModalOpen}) => {
+const Navbar = ({ setModalOpen }) => {
   const [open, setOpen] = useState(null);
   const categoryRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -30,15 +29,21 @@ const Navbar = ({setModalOpen}) => {
           </h2>
         </div>
         <div className="right">
-          <Link to={"/"}>Home</Link>
+          <Link to={"/"} className={location.pathname === "/" ? "active" : ""}>
+            Home
+          </Link>
           <a onClick={() => setOpen(true)}>Services</a>
           <Link to={"/"}>Blogs</Link>
           <Link to={"/"}>About Us</Link>
-          <Link to={"/"}>Contact Us</Link>
-          <button onClick={()=>setModalOpen(true)}>Consult Now</button>
+          <Link
+            to={"/contact-us"}
+            className={location.pathname === "/contact-us" ? "active" : ""}
+          >
+            Contact Us
+          </Link>
+          <button onClick={() => setModalOpen(true)}>Consult Now</button>
         </div>
         {open && <Services />}
-      
       </header>
     </>
   );
@@ -56,7 +61,7 @@ export const Services = () => {
             ?.filter((f) => f.category === "Compliance")
             ?.map((d) => (
               <li key={d.id}>
-                <Link path="">{d.title}</Link>
+                <Link to={`/services/${d.title}`}>{d.title}</Link>
               </li>
             ))}
         </ul>
@@ -68,7 +73,7 @@ export const Services = () => {
             ?.filter((f) => f.category === "Registrations")
             ?.map((d) => (
               <li key={d.id}>
-                <Link path="">{d.title}</Link>
+                <Link to={`/services/${d.title}`}>{d.title}</Link>
               </li>
             ))}
         </ul>
@@ -80,7 +85,7 @@ export const Services = () => {
             ?.filter((f) => f.category === "Other Services")
             ?.map((d) => (
               <li key={d.id}>
-                <Link path="">{d.title}</Link>
+             <Link to={`/services/${d.title}`}>{d.title}</Link>
               </li>
             ))}
         </ul>

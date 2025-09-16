@@ -16,25 +16,6 @@ import OurClients from "../components/OurClients";
 const Home = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const header = document.querySelector("header");
-      if (header) {
-        header.classList.toggle("sticky", window.scrollY > 10);
-      }
-    };
-
-    // Attach scroll listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Run once on mount in case already scrolled
-    handleScroll();
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   return (
     <>

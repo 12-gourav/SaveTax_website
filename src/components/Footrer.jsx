@@ -7,7 +7,7 @@ const Footrer = () => {
     <footer>
       <div className="container">
         <div className="left">
-          <h5>SaveTax</h5>
+          <h5>Save<span> Tax</span></h5>
           <p>
             SaveTax helps individuals and businesses simplify tax filing,
             maximize deductions, and stay compliant with the latest tax
