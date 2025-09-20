@@ -3,21 +3,26 @@ import { useLocation } from "react-router-dom";
 import img from "../assets/img/optimize/b1.jpg";
 import { Anchor } from "antd";
 import Footrer from "../components/Footrer";
+import HomePageHelmet from "../components/HomePageHelmet";
+import { useState } from "react";
+import ConsultModal from "../components/ConsultModal";
 
 const ServiceDetail = () => {
   const location = useLocation();
+    const [modalOpen, setModalOpen] = useState(false);
+  
 
-  console.log(decodeURI(location.pathname.split("/services")[1]));
 
   return (
     <>
+       <HomePageHelmet />
       <section className="service_detail">
-        <Navbar />
+        <Navbar setModalOpen={setModalOpen} />
         <div className="detail_header">
           <button>Save Tax India</button>
           <h1>{decodeURI(location.pathname.split("/services/")[1])}</h1>
           <div className="img_box">
-            <img src={img} alt="img" />
+            <img src={img} alt="Save Tax India" />
             <div className="bg"></div>
           </div>
         </div>
@@ -301,6 +306,7 @@ const ServiceDetail = () => {
         </div>
       </section>
       <Footrer/>
+      {modalOpen && <ConsultModal open={modalOpen} setOpen={setModalOpen} />}
     </>
   );
 };

@@ -18,17 +18,17 @@ const OurClients = () => {
       <div className="client_review">
         {[img4, img1, img2, img3]?.map((d) => (
           <div className="img_card">
-            <img src={d} />
+            <img src={d} alt="Save Tax India" />
           </div>
         ))}
         {[img4, img1, img2, img3]?.map((d) => (
           <div className="img_card">
-            <img src={d} />
+            <img src={d} alt="Save Tax India" />
           </div>
         ))}
         {[img4, img1, img2, img3]?.map((d) => (
           <div className="img_card">
-            <img src={d} />
+            <img src={d} alt="Save Tax India" />
           </div>
         ))}
       </div>

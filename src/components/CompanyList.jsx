@@ -45,7 +45,7 @@ export default function CompanyList() {
         <div className="ticker-row">
           {companyList.concat(companyList).map((item, index) => (
             <div key={`${item.id}-${index}`} className="ticker-item">
-              <img src={item.img} alt="img" />
+              <img src={item.img} alt="Save Tax India" />
             </div>
           ))}
         </div>

@@ -50,11 +50,11 @@ const ReviewContent = () => {
 
   return reviews?.map((d) => (
     <div className="review_card">
-      <img className="img" src={img} />
+      <img className="img" src={img} alt="Save Tax India" />
       <p>{d.feedback}</p>
       <div className="rate">{Rate(d.rate).map((f) => f)}</div>
       <div className="form_group">
-        <img src={d.img} />
+        <img src={d.img} alt="Save Tax India" />
         <div className="form_label">
           <h5>{d.name}</h5>
           <p>{d.designation}</p>

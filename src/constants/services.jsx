@@ -12,7 +12,6 @@ import grr from "../assets/icons/grr.png";
 import prr from "../assets/icons/prr.png";
 import brr from "../assets/icons/brr.png";
 import support from "../assets/icons/support.png";
-import { color } from "framer-motion";
 
 export const serviceData = [
   {
@@ -78,7 +77,7 @@ export const serviceData = [
     benefits: [
       "Avoid interest and penalties",
       "Maintain compliance with IT Act",
-      "Smooth employee/vendor credit availability",
+      "Smooth employeeOrvendor credit availability",
       "Quarterly compliance without hassle",
     ],
     seo: {
@@ -103,7 +102,7 @@ export const serviceData = [
     short_description:
       "Annual compliance filing with the Registrar of Companies.",
     long_description:
-      "Our experts manage filing of annual returns and financial statements with the MCA to ensure your company/LLP remains compliant.",
+      "Our experts manage filing of annual returns and financial statements with the MCA to ensure your company OR LLP remains compliant.",
     benefits: [
       "Avoid company strike-off",
       "Stay compliant with Companies Act",
@@ -127,7 +126,7 @@ export const serviceData = [
   },
   {
     id: "ptrc-ptec",
-    title: "PTRC/PTEC Payment & Returns",
+    title: "PTRC OR PTEC Payment & Returns",
     category: "Compliance",
     short_description: "Professional tax registration and return filing.",
     long_description:
@@ -141,7 +140,7 @@ export const serviceData = [
     seo: {
       meta_title: "PTRC PTEC Registration & Return Filing | Save Tax",
       meta_description:
-        "Register and file PTRC/PTEC returns easily with Save Tax. Ensure professional tax compliance for businesses and avoid penalties.",
+        "Register and file PTRCOrPTEC returns easily with Save Tax. Ensure professional tax compliance for businesses and avoid penalties.",
       keywords: [
         "PTRC filing",
         "PTEC registration",
@@ -184,7 +183,7 @@ export const serviceData = [
   },
   {
     id: "pan-tan-application",
-    title: "PAN/TAN Application",
+    title: "PANOrTAN Application",
     category: "Other Services",
     short_description: "Seamless application for PAN and TAN registration.",
     long_description:
@@ -325,7 +324,7 @@ export const serviceData = [
     short_description:
       "Complete support for forming Private Limited, LLP, or Partnership.",
     long_description:
-      "We handle all aspects of company formation, from name approval to registration, PAN/TAN, and GST, making the setup process hassle-free.",
+      "We handle all aspects of company formation, from name approval to registration, PANOrTAN, and GST, making the setup process hassle-free.",
     benefits: [
       "Quick incorporation",
       "Compliance with MCA rules",
@@ -348,7 +347,7 @@ export const serviceData = [
   },
   {
     id: "huf-partnership-registration",
-    title: "HUF/Partnership Registration",
+    title: "HUFOrPartnership Registration",
     category: "Registrations",
     short_description: "Legal registration of HUF or partnership entities.",
     long_description:
@@ -379,7 +378,7 @@ export const serviceData = [
     category: "Registrations",
     short_description: "Obtain Import & Export Code for your business.",
     long_description:
-      "We guide businesses in obtaining IEC for import/export operations, enabling trade without regulatory hassles. Obtain Import & Export Code for your business.",
+      "We guide businesses in obtaining IEC for importOrexport operations, enabling trade without regulatory hassles. Obtain Import & Export Code for your business.",
     benefits: [
       "Legally compliant trade",
       "Required for customs clearance",
@@ -388,7 +387,7 @@ export const serviceData = [
     seo: {
       meta_title: "Import Export Code (IEC) Registration | Save Tax",
       meta_description:
-        "Obtain IEC for import/export business operations legally and smoothly with Save Tax. Comply with customs & trade regulations.",
+        "Obtain IEC for importOrexport business operations legally and smoothly with Save Tax. Comply with customs & trade regulations.",
       keywords: [
         "IEC registration",
         "Import Export Code India",
@@ -436,7 +435,7 @@ export const serviceData = [
     long_description:
       "We facilitate obtaining Gumasta license ensuring your business is legally allowed to operate in local jurisdiction.",
     benefits: [
-      "Legal compliance for shop/business",
+      "Legal compliance for shopOrbusiness",
       "Avoid fines and penalties",
       "Necessary for business operations",
     ],
@@ -484,7 +483,7 @@ export const serviceData = [
   },
   {
     id: "trademark-patent",
-    title: "Trademark / Patent Registration",
+    title: "Trademark Or Patent Registration",
     category: "Registrations",
     short_description: "Protect your brand, invention, or product legally.",
     long_description:
@@ -511,7 +510,7 @@ export const serviceData = [
   },
   {
     id: "contact-help",
-    title: "Contact / Help",
+    title: "Contact Or Help",
     category: "Support",
     short_description: "Reach out for queries, assistance, or guidance.",
     long_description:

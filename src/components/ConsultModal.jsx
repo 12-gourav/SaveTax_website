@@ -12,7 +12,7 @@ const ConsultModal = ({ open, setOpen }) => {
     >
       <div className="consultant_modal">
         <div className="left">
-          <img src={img} />
+          <img src={img} alt="Save Tax India" />
 
           <p>
             For any queries, feel free to connect with us at

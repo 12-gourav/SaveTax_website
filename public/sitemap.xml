@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Main Pages -->
+  <url><loc>https://savetaxindia.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://savetaxindia.com/</loc><priority>0.9</priority></url>
+  <url>
+    <loc>https://savetaxindia.com/services/income-tax-returns-itr-filing</loc>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://savetaxindia.com/services/gst-returns-filing</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/tds-returns-filing</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/roc-annual-returns</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/ptrc-or-ptec-payment-returns</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/accounting-book-keeping</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/panortan-application</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/aadhaar-card-update</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/dsc-application</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/gst-registration</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/iso-registration</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/company-formation</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/huforpartnership-registration</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/iec-registration</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/msme-registration</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/gumasta-license</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/fssai-license</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/trademark-or-patent-registration</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://savetaxindia.com/services/contact-or-help</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Authentication Pages (Less Important for SEO) -->
+  <url><loc>https://savetaxindia.com/auth/login</loc><priority>0.3</priority></url>
+  <url><loc>https://savetaxindia.com/dashboard</loc><priority>0.3</priority></url>
+
+  <!-- Static Pages (Important for Info & Policies) -->
+  <url><loc>https://savetaxindia.com/privacy-policy</loc><priority>0.7</priority></url>
+  <url><loc>https://savetaxindia.com/terms-conditions</loc><priority>0.7</priority></url>
+
+</urlset>

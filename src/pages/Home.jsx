@@ -12,26 +12,41 @@ import ConsultModal from "../components/ConsultModal";
 import CustomerReview from "../components/CustomerReview";
 import CircularBenifits from "../components/CircularBenifits";
 import OurClients from "../components/OurClients";
+import { useLocation } from "react-router-dom";
+import HomePageHelmet from "../components/HomePageHelmet";
 
 const Home = () => {
   const [modalOpen, setModalOpen] = useState(false);
-
+  const location = useLocation();
+  useEffect(() => {
+    if (location.hash) {
+      const id = location.hash.replace("#", "");
+      const element = document.getElementById(id);
+      if (element) {
+        const yOffset = -80; // height of your header
+        const y =
+          element.getBoundingClientRect().top + window.scrollY + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }
+  }, [location]);
 
   return (
     <>
+       <HomePageHelmet />
       <Navbar setModalOpen={setModalOpen} />
       <Banner />
-       <Ticket />
-      <HomeServices /> 
-      <OurClients/>
-       <BannerTwo />
-      <CircularBenifits/> 
-      <CustomerReview/>
+      <Ticket />
+      <HomeServices />
+      <OurClients />
+      <BannerTwo />
+      <CircularBenifits />
+      <CustomerReview />
       <About />
 
       <Newsletter />
       <Faq />
-      <Footrer /> 
+      <Footrer />
 
       {modalOpen && <ConsultModal open={modalOpen} setOpen={setModalOpen} />}
     </>

@@ -11,7 +11,7 @@ const Newsletter = () => {
         transition={{ type: "tween", duration: 0.8 }}
         className="container"
       >
-        <img src={img} alt="img" />
+        <img src={img} alt="Save Tax India"  />
         <div className="content">
           <h2>Stay Ahead with Tax Insights</h2>
           <p>

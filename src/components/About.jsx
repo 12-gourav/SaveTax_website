@@ -2,7 +2,7 @@ import img from "../assets/img/about.jpg";
 import { motion } from "framer-motion";
 const About = () => {
   return (
-    <section className="about">
+    <section className="about" id="about">
       <h3>About Us</h3>
       <p>We Handle Taxes, You Handle Growth</p>
       <div className="container">
@@ -50,7 +50,7 @@ const About = () => {
           className="right"
         >
           <div className="img">
-            <img src={img} alt="img" />
+            <img src={img} alt="Save Tax India" />
             <div className="pulse">
               <div className="pulse-animation">
                 <i className="bx bx-play-circle"></i>

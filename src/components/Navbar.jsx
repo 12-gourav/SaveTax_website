@@ -8,6 +8,8 @@ const Navbar = ({ setModalOpen }) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (categoryRef.current && !categoryRef.current.contains(event.target)) {
@@ -21,7 +23,6 @@ const Navbar = ({ setModalOpen }) => {
     };
   }, []);
 
-  console.log(location)
   return (
     <>
       <header ref={categoryRef}>
@@ -31,12 +32,11 @@ const Navbar = ({ setModalOpen }) => {
           </h2>
         </div>
         <div className="right">
-          <Link to={"/"} className={location.pathname === "/" ? "active" : ""}>
+          <Link to={"/"} className={location.pathname === "/" && location.hash==='' ? "active" : ""}>
             Home
           </Link>
           <a onClick={() => setOpen(true)}>Services</a>
-          <Link to={"/"}>Blogs</Link>
-          <Link to={"/"}>About Us</Link>
+          <Link to={"/#about"} className={location.hash === "#about" ? "active" : ""}>About Us</Link>
           <Link
             to={"/contact-us"}
             className={location.pathname === "/contact-us" ? "active" : ""}
@@ -57,7 +57,12 @@ const Navbar = ({ setModalOpen }) => {
           <div className="menu">
             <Link
               to={"/"}
-              className={location.pathname === "/" ? "active" : ""}
+              className={
+                location.pathname === "/" && location.hash === ""
+                  ? "active"
+                  : ""
+              }
+              onClick={() => setMenuOpen(false)}
             >
               Home
             </Link>
@@ -69,27 +74,42 @@ const Navbar = ({ setModalOpen }) => {
             >
               Services
             </a>
-            <Link to={"/"}>Blogs</Link>
-            <Link to={"/"}>About Us</Link>
+            <Link
+              to={"/#about"}
+              className={location.hash === "#about" ? "active" : ""}
+              onClick={() => setMenuOpen(false)}
+            >
+              About Us
+            </Link>
             <Link
               to={"/contact-us"}
               className={location.pathname === "/contact-us" ? "active" : ""}
             >
               Contact Us
             </Link>
-            <button onClick={() => setModalOpen(true)}>Consult Now</button>
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                setModalOpen(true);
+              }}
+            >
+              Consult Now
+            </button>
           </div>
           <div className="form_group">
             <label>
               <i className="bx bxs-envelope"></i>Email Address
             </label>
-            <a href="mailto:savetax.info@gmail.com"> savetax.info@gmail.com</a>
+            <a href="mailto: artikanojia07@gmail.com">
+              {" "}
+              artikanojia07@gmail.com
+            </a>
           </div>
           <div className="form_group">
             <label>
               <i className="bx bxs-phone"></i>Contact No
             </label>
-            <a href="tel:+911234567890">+911234567890</a>
+            <a href="tel:+918048775862">+91 8048775862</a>
           </div>
         </div>
       )}
@@ -109,7 +129,7 @@ export const Services = () => {
             ?.filter((f) => f.category === "Compliance")
             ?.map((d) => (
               <li key={d.id}>
-                <Link to={`/services/${d.title}`}>{d.title}</Link>
+                <Link to={`/services/${encodeURI(d.title)}`}>{d.title}</Link>
               </li>
             ))}
         </ul>
@@ -121,7 +141,7 @@ export const Services = () => {
             ?.filter((f) => f.category === "Registrations")
             ?.map((d) => (
               <li key={d.id}>
-                <Link to={`/services/${d.title}`}>{d.title}</Link>
+                <Link to={`/services/${encodeURI(d.title)}`}>{d.title}</Link>
               </li>
             ))}
         </ul>
@@ -133,7 +153,7 @@ export const Services = () => {
             ?.filter((f) => f.category === "Other Services")
             ?.map((d) => (
               <li key={d.id}>
-                <Link to={`/services/${d.title}`}>{d.title}</Link>
+                <Link to={`/services/${encodeURI(d.title)}`}>{d.title}</Link>
               </li>
             ))}
         </ul>
@@ -142,7 +162,7 @@ export const Services = () => {
         <h4>
           From Confusion to Clarity – <span>Save Tax with Ease</span>
         </h4>
-        <img src={img} />
+        <img src={img} alt="Save Tax India" />
       </div>
     </div>
   );

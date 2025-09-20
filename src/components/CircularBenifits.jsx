@@ -33,7 +33,7 @@ const CircularBenifits = () => {
                     : "2px solid transparent",
               }}
             >
-              <img src={img} onClick={() => setState("1")} />
+              <img src={img} onClick={() => setState("1")}  alt="Save Tax India"/>
             </div>
             <div
               className={state === "2" ? "imgbx active" : "imgbx"}
@@ -45,7 +45,7 @@ const CircularBenifits = () => {
                     : "2px solid transparent",
               }}
             >
-              <img src={img2} onClick={() => setState("2")} />
+              <img src={img2} onClick={() => setState("2")} alt="Save Tax India" />
             </div>
             <div
               className={state === "3" ? "imgbx active" : "imgbx"}
@@ -57,7 +57,7 @@ const CircularBenifits = () => {
                     : "2px solid transparent",
               }}
             >
-              <img src={img3} onClick={() => setState("3")} />
+              <img src={img3} onClick={() => setState("3")}  alt="Save Tax India"/>
             </div>
             <div
               className={state === "4" ? "imgbx active" : "imgbx"}
@@ -69,7 +69,7 @@ const CircularBenifits = () => {
                     : "2px solid transparent",
               }}
             >
-              <img src={img4} onClick={() => setState("4")} />
+              <img src={img4} onClick={() => setState("4")} alt="Save Tax India" />
             </div>
             <div
               className={state === "5" ? "imgbx active" : "imgbx"}
@@ -81,7 +81,7 @@ const CircularBenifits = () => {
                     : "2px solid transparent",
               }}
             >
-              <img src={img5} onClick={() => setState("5")} />
+              <img src={img5} onClick={() => setState("5")} alt="Save Tax India" />
             </div>
             <div
               className={state === "6" ? "imgbx active" : "imgbx"}
@@ -93,7 +93,7 @@ const CircularBenifits = () => {
                     : "2px solid transparent",
               }}
             >
-              <img src={img6} onClick={() => setState("6")} />
+              <img src={img6} onClick={() => setState("6")} alt="Save Tax India" />
             </div>
           </div>
           <div className="content">

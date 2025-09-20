@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const BannerTwo = () => {
   return (
-    <section className="banner2">
+    <section className="banner2" id="benifits">
       <div className="left">
         <div className="btn_text">Why Extent Your tax?</div>
         <h1>The Benifits of SaveTax</h1>
