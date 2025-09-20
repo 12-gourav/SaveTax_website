@@ -21,17 +21,17 @@ const Home = () => {
     <>
       <Navbar setModalOpen={setModalOpen} />
       <Banner />
-      <Ticket />
-      <HomeServices />
+       <Ticket />
+      <HomeServices /> 
       <OurClients/>
-      <BannerTwo />
-      <CircularBenifits/>
+       <BannerTwo />
+      <CircularBenifits/> 
       <CustomerReview/>
       <About />
 
       <Newsletter />
       <Faq />
-      <Footrer />
+      <Footrer /> 
 
       {modalOpen && <ConsultModal open={modalOpen} setOpen={setModalOpen} />}
     </>

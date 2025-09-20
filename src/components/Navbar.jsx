@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { serviceData } from "../constants/services";
 import img from "../assets/img/cute.png";
@@ -6,6 +6,7 @@ const Navbar = ({ setModalOpen }) => {
   const [open, setOpen] = useState(null);
   const categoryRef = useRef(null);
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -20,6 +21,7 @@ const Navbar = ({ setModalOpen }) => {
     };
   }, []);
 
+  console.log(location)
   return (
     <>
       <header ref={categoryRef}>
@@ -43,8 +45,54 @@ const Navbar = ({ setModalOpen }) => {
           </Link>
           <button onClick={() => setModalOpen(true)}>Consult Now</button>
         </div>
+        <div className="right2">
+          <i className="bx bx-menu" onClick={() => setMenuOpen(true)}></i>
+        </div>
+
         {open && <Services />}
       </header>
+      {menuOpen && (
+        <div className="mobile_nav">
+          <i className="bx bx-x" onClick={() => setMenuOpen(false)}></i>
+          <div className="menu">
+            <Link
+              to={"/"}
+              className={location.pathname === "/" ? "active" : ""}
+            >
+              Home
+            </Link>
+            <a
+              onClick={() => {
+                setOpen(true);
+                setMenuOpen(false);
+              }}
+            >
+              Services
+            </a>
+            <Link to={"/"}>Blogs</Link>
+            <Link to={"/"}>About Us</Link>
+            <Link
+              to={"/contact-us"}
+              className={location.pathname === "/contact-us" ? "active" : ""}
+            >
+              Contact Us
+            </Link>
+            <button onClick={() => setModalOpen(true)}>Consult Now</button>
+          </div>
+          <div className="form_group">
+            <label>
+              <i className="bx bxs-envelope"></i>Email Address
+            </label>
+            <a href="mailto:savetax.info@gmail.com"> savetax.info@gmail.com</a>
+          </div>
+          <div className="form_group">
+            <label>
+              <i className="bx bxs-phone"></i>Contact No
+            </label>
+            <a href="tel:+911234567890">+911234567890</a>
+          </div>
+        </div>
+      )}
     </>
   );
 };
@@ -85,7 +133,7 @@ export const Services = () => {
             ?.filter((f) => f.category === "Other Services")
             ?.map((d) => (
               <li key={d.id}>
-             <Link to={`/services/${d.title}`}>{d.title}</Link>
+                <Link to={`/services/${d.title}`}>{d.title}</Link>
               </li>
             ))}
         </ul>
