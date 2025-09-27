@@ -1,8 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import ContactUs from "./pages/ContactUs";
-import { useEffect } from "react";
-import ServiceDetail from "./pages/ServiceDetail";
+import { lazy, Suspense, useEffect } from "react";
+import img from "./assets/img/logo_blue.svg";
+const Home = lazy(() => import("./pages/Home"));
+const ContactUs = lazy(() => import("./pages/ContactUs"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 
 const App = () => {
   useEffect(() => {
@@ -13,13 +14,10 @@ const App = () => {
       }
     };
 
-    // Attach scroll listener
     window.addEventListener("scroll", handleScroll);
 
-    // Run once on mount in case already scrolled
     handleScroll();
 
-    // Cleanup
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -27,11 +25,16 @@ const App = () => {
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/services/:name" element={<ServiceDetail />} />
-      </Routes>
+      <Suspense fallback={<div className="split">
+        <img src={img} alt="Save India Tax"/>
+        <h2>Save Tax India</h2>
+      </div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+          <Route path="/services/:name" element={<ServiceDetail />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };

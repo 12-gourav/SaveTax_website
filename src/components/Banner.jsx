@@ -49,7 +49,7 @@ const Banner = () => {
             />
           </picture>
           <div className="img_content">
-            <h1>Save Tax</h1>
+            <h1>Save Tax India</h1>
             <h2>Consultancy Services</h2>
             <p>
               Filing taxes doesn’t have to be confusing, time-consuming, or
@@ -81,7 +81,7 @@ const Banner = () => {
             />
           </picture>
           <div className="img_content">
-            <h1>Save Tax</h1>
+            <h1>Save Tax India</h1>
             <h2>Consultancy Services</h2>
             <p>
               Filing taxes doesn’t have to be confusing, time-consuming, or
@@ -115,7 +115,7 @@ const Banner = () => {
             />
           </picture>
           <div className="img_content">
-            <h1>Save Tax</h1>
+            <h1>Save Tax India</h1>
             <h2>Consultancy Services</h2>
             <p>
               Filing taxes doesn’t have to be confusing, time-consuming, or

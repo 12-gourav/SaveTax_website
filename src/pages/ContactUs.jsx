@@ -7,8 +7,7 @@ import ConsultModal from "../components/ConsultModal";
 
 const ContactUs = () => {
   const { pathname } = useLocation();
-    const [modalOpen, setModalOpen] = useState(false);
-  
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     // Scroll to top whenever pathname changes
@@ -35,7 +34,7 @@ const ContactUs = () => {
               {" "}
               artikanojia07@gmail.com
             </a>
-            <a href="tel:+918048775862">+91 8048775862</a>
+            <a href="tel:+917715843292">+91 7715843292</a>
 
             <div className="col_wrapper">
               <div className="col1">
@@ -106,14 +105,11 @@ const ContactUs = () => {
           <h5>Our Location</h5>
           <h2>Connecting Near and Far</h2>
           <h4>Headquarters</h4>
-          <p>
-            Room no 22, Baban Patel Lane, Sailesh Nagar, Malad West, Mumbai,
-            Maharashtra - 400064, India
-          </p>
+          <p>Sailesh Nagar, Malad West, Mumbai, Maharashtra - 400064, India</p>
         </div>
       </section>
       <Footrer />
-     {modalOpen && <ConsultModal open={modalOpen} setOpen={setModalOpen} />}
+      {modalOpen && <ConsultModal open={modalOpen} setOpen={setModalOpen} />}
     </>
   );
 };

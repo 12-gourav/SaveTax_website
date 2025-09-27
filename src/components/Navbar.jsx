@@ -2,6 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { serviceData } from "../constants/services";
 import img from "../assets/img/cute.png";
+
+import logoWhite from "../assets/img/logo_white.svg";
+import logoDark from "../assets/img/logo_blue.svg";
+
+
 const Navbar = ({ setModalOpen }) => {
   const [open, setOpen] = useState(null);
   const categoryRef = useRef(null);
@@ -27,8 +32,9 @@ const Navbar = ({ setModalOpen }) => {
     <>
       <header ref={categoryRef}>
         <div className="left">
+          <img src={logoDark} alt="save tax india"/>
           <h2>
-            Save<span>Tax</span>
+            Save<span> Tax</span> India
           </h2>
         </div>
         <div className="right">
