@@ -1,6 +1,13 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense, useEffect } from "react";
 import img from "./assets/img/logo_blue.svg";
+import Login from "./pages/Login";
+import { Toaster } from "react-hot-toast";
+import Dashboard from "./pages/admin/Dashboard";
+import DashboardContent from "./pages/admin/DashboardContent";
+import Services from "./pages/admin/Services";
+import ContactList from "./pages/admin/ContactList";
+import ConsulntList from "./pages/admin/ConsulntList";
 const Home = lazy(() => import("./pages/Home"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
@@ -25,14 +32,32 @@ const App = () => {
 
   return (
     <>
-      <Suspense fallback={<div className="split">
-        <img src={img} alt="Save India Tax"/>
-        <h2>Save Tax India</h2>
-      </div>}>
+      <Suspense
+        fallback={
+          <div className="split">
+            <img src={img} alt="Save India Tax" />
+            <h2>Save Tax India</h2>
+          </div>
+        }
+      >
+        <Toaster position="bottom-right" reverseOrder={false} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/services/:name" element={<ServiceDetail />} />
+          <Route path="/auth/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="/dashboard" element={<DashboardContent />} />
+            <Route path="/dashboard/services" element={<Services />} />
+            <Route
+              path="/dashboard/contact/clients"
+              element={<ContactList />}
+            />
+            <Route
+              path="/dashboard/consulnt/clients"
+              element={<ConsulntList />}
+            />
+          </Route>
         </Routes>
       </Suspense>
     </>
