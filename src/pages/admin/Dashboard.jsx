@@ -17,6 +17,7 @@ const Dashboard = () => {
         <div className="dash_nav">
           {DashboardRoutes?.map((d) => (
             <div
+            key={d.id}
               className={
                 location.pathname === d.path ? "dash_link active" : "dash_link"
               }

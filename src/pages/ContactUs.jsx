@@ -4,17 +4,50 @@ import Footrer from "../components/Footrer";
 import HomePageHelmet from "../components/HomePageHelmet";
 import { useLocation } from "react-router-dom";
 import ConsultModal from "../components/ConsultModal";
+import toast from "react-hot-toast";
+import { createContact } from "../api/api";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const ContactUs = () => {
   const { pathname } = useLocation();
   const [modalOpen, setModalOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    try {
+      if (name === "") return toast.error("Name is required");
+      if (email === "") return toast.error("Email is required");
+      if (phone === "") return toast.error("Phone is required");
+      if (query === "") return toast.error("Query is required");
+
+      setLoading(true);
+
+      const result = await createContact(name, email, phone, query, "Contact");
+      if (result?.data?.data) {
+        toast.success(
+          "Thank you for contacting us. We’ve received your query and will get back to you shortly."
+        );
+        setName("");
+        setEmail("");
+        setPhone("");
+        setQuery("");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Scroll to top whenever pathname changes
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth", // optional, remove if you want instant scroll
+      behavior: "smooth",
     });
   }, [pathname]);
 
@@ -66,21 +99,42 @@ const ContactUs = () => {
               <p>You can reach us anytime</p>
               <div className="form_group">
                 <label>Name</label>
-                <input type="text" placeholder="Enter your full name" />
+                <input
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  type="text"
+                  placeholder="Enter your full name"
+                />
               </div>
               <div className="form_group">
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email address" />
+                <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Enter your email address"
+                />
               </div>
               <div className="form_group">
                 <label>Phone</label>
-                <input type="text" placeholder="Enter your phone number" />
+                <input
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  type="text"
+                  placeholder="Enter your phone number"
+                />
               </div>
               <div className="form_group">
                 <label>Message</label>
-                <textarea placeholder="Enter your query" />
+                <textarea
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Enter your query"
+                />
               </div>
-              <button>Submit</button>
+              <button disabled={loading} onClick={handleSubmit}>
+                {loading ? <LoadingOutlined /> : "Submit"}
+              </button>
               <p className="last-p">
                 By contacting us, you agree to our <b>Terms of service</b> and{" "}
                 <b>Privacy Policy</b>

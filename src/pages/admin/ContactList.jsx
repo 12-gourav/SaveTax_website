@@ -1,16 +1,49 @@
-import { DatePicker, Pagination } from "antd";
+import { DatePicker, Pagination, Skeleton } from "antd";
+import { useCallback, useEffect, useState } from "react";
+import { getContact } from "../../api/api";
+import NoData from "../../components/NoData";
+import Loader from "../../components/Loader";
 
 const ContactList = () => {
+  const [state, setState] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [current, setCurrent] = useState(1);
+  const [date, setDate] = useState(null);
+  const [limit, setLimit] = useState(10);
+  const [loading, setLoading] = useState(false);
+
+  const fetchRecords = useCallback(async () => {
+    try {
+      setLoading(true);
+      const result = await getContact(current, limit, "Contact", date);
+      if (result?.data?.data) {
+        setTotal(result?.data?.total);
+        setState(result?.data?.data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }, [current, date]);
+
+  useEffect(() => {
+    fetchRecords();
+  }, [fetchRecords]);
+
+  useEffect(() => {
+    setCurrent(1);
+  }, [limit]);
+
   return (
     <section className="contact_list">
       <h1 className="page_title">Contact Clients</h1>
-      <p className="page_dis">
-        Monitor tax savings, track contact clients, and manage operations
-        seamlessly.
-      </p>
+      <p className="page_dis">View and manage your contact clients.</p>
       <div className="table_head">
-        <p>Total 10 Records available out of 30 Records</p>
-        <DatePicker/>
+        <p>
+          Showing {state.length} records, out of {total} available
+        </p>
+        <DatePicker onChange={(date, dateString) => setDate(dateString)} />
       </div>
       <div className="table_wrapper">
         <table>
@@ -23,24 +56,42 @@ const ContactList = () => {
               <th>Message</th>
             </tr>
           </thead>
-          <tbody>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0]?.map((d) => (
-              <tr className={d%2===0 ? "active":""}>
-                <td >{new Date("12/09/2025").toDateString()}</td>
-                <td>Test Client1</td>
-                <td>testclient@gmail.com</td>
-                <td>+91 8382088052</td>
-                <td>
-                  This is my test message If you don’t want all window scrolls
-                  to close it, but only when the parent div scrolls:
-                </td>
-              </tr>
-            ))}
-          </tbody>
+          {loading ? (
+            <Loader map={[1, 2, 3, 4, 5]} colMap={[1, 2, 3, 4, 5]} />
+          ) : state.length === 0 ? (
+            <NoData colspan={5} />
+          ) : (
+            <tbody>
+              {state?.map((d, i) => (
+                <tr className={i % 2 === 0 ? "active" : ""}>
+                  <td>{new Date(d.createdAt).toDateString()}</td>
+                  <td>{d.name}</td>
+                  <td>
+                    <a href={`mailto:${d.email}`}>{d.email}</a>
+                  </td>
+                  <td>
+                    <a href={`tel:+91${d.phone}`}>+91 {d.phone}</a>
+                  </td>
+                  <td>{d.query}</td>
+                </tr>
+              ))}
+            </tbody>
+          )}
         </table>
       </div>
       <div className="table_foot">
-        <Pagination total={30}/>
+        {loading && total > limit && (
+          <Pagination
+            total={total}
+            current={current}
+            pageSize={limit}
+            onChange={(page, size) => {
+              setCurrent(page);
+              setLimit(size);
+            }}
+            showSizeChanger
+          />
+        )}
       </div>
     </section>
   );
