@@ -23,4 +23,16 @@ export const DashboardRoutes = [
     path: "/dashboard/consulnt/clients",
     icon: <i className="bx bxs-user"></i>,
   },
+  {
+    id: 5,
+    title: "Newsletters",
+    path: "/dashboard/newsletter",
+    icon:<i className='bx bxs-balloon' ></i>,
+  },
+  {
+    id: 6,
+    title: "News",
+    path: "/dashboard/news",
+    icon: <i className="bx bx-news"></i>,
+  },
 ];

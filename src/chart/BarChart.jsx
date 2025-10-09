@@ -2,53 +2,50 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 export default function BarChart({
-  clientsData = null, // array of 6 numbers for clients
-  consultantsData = null, // array of 6 numbers for consultants
-  categories = null, // array of 6 month labels
+  clientsData = [], // contactClients array
+  consultantsData = [], // consultantClients array
   className = "",
 }) {
-  // Generate last 6 month labels like "Apr 2025"
-  const getLast6Months = () => {
-    const labels = [];
-    const now = new Date();
-    for (let i = 5; i >= 0; i--) {
-      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-      labels.push(
-        d.toLocaleString(undefined, { month: "short", year: "numeric" })
-      );
-    }
-    return labels;
-  };
+  // 🗓 Month labels (short form)
+  const monthNames = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+  ];
 
-  // Generate sample/mock data if not passed
-  const sampleClients = () =>
-    Array.from({ length: 6 }).map((_, i) =>
-      Math.max(0, Math.round(20 + Math.sin(i) * 5 + i * 2))
-    );
-  const sampleConsultants = () =>
-    Array.from({ length: 6 }).map((_, i) =>
-      Math.max(0, Math.round(8 + Math.cos(i) * 3 + i))
-    );
+  // 🧠 Build last 6 months (even if some months missing in data)
+  const now = new Date();
+  const last6Months = Array.from({ length: 6 }).map((_, i) => {
+    const date = new Date(now.getFullYear(), now.getMonth() - 5 + i, 1);
+    return {
+      month: date.getMonth() + 1, // 1–12
+      label: `${monthNames[date.getMonth()]} ${date.getFullYear()}`,
+    };
+  });
 
-  const finalCategories =
-    categories && categories.length === 6 ? categories : getLast6Months();
-  const finalClients =
-    clientsData && clientsData.length === 6 ? clientsData : sampleClients();
-  const finalConsultants =
-    consultantsData && consultantsData.length === 6
-      ? consultantsData
-      : sampleConsultants();
+  // 🧩 Convert data to map for quick lookup
+  const clientMap = Object.fromEntries(
+    clientsData.map((d) => [d.month, d.total])
+  );
+  const consultantMap = Object.fromEntries(
+    consultantsData.map((d) => [d.month, d.total])
+  );
 
+  // 🪄 Fill missing months with 0s and build chart arrays
+  const categories = last6Months.map((m) => m.label);
+  const clientTotals = last6Months.map((m) => clientMap[m.month] || 0);
+  const consultantTotals = last6Months.map((m) => consultantMap[m.month] || 0);
+
+  // 📊 Chart options
   const options = {
     chart: {
       type: "column",
       styledMode: false,
-      height: 340,
+      height: 300,
       spacing: [10, 10, 15, 10],
     },
     title: { text: null },
     xAxis: {
-      categories: finalCategories,
+      categories,
       crosshair: true,
       labels: { style: { fontSize: "12px" } },
     },
@@ -85,12 +82,12 @@ export default function BarChart({
     series: [
       {
         name: "Clients",
-        data: finalClients,
+        data: clientTotals,
         color: "#0a66c2", // Indigo
       },
       {
         name: "Consultant Clients",
-        data: finalConsultants,
+        data: consultantTotals,
         color: "#10B981", // Emerald
       },
     ],
@@ -106,12 +103,16 @@ export default function BarChart({
           condition: { maxWidth: 520 },
           chartOptions: {
             xAxis: { labels: { rotation: -45 } },
-            chart: { height: 320 },
+            chart: { height: 250 },
           },
         },
       ],
     },
   };
 
-  return <HighchartsReact highcharts={Highcharts} options={options} />;
+  return (
+    <div className={className}>
+      <HighchartsReact highcharts={Highcharts} options={options} />
+    </div>
+  );
 }

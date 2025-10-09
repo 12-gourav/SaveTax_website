@@ -1,7 +1,32 @@
+import { useState } from "react";
 import img from "../assets/img/optimize/news.jpg";
 import { motion } from "framer-motion";
-
+import { LoadingOutlined } from "@ant-design/icons";
+import toast from "react-hot-toast";
+import { CreateNewsletter } from "../api/api";
 const Newsletter = () => {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    try {
+      if (email === "") return toast.error("Email is required");
+      setLoading(true);
+      const result = await CreateNewsletter(email);
+      if (result?.data?.data) {
+        toast.success(
+          "Thank you for subscribing! You’ll start receiving our latest updates soon."
+        );
+        setEmail("");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error?.response?.data?.msg);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="newsletter">
       <motion.div
@@ -11,7 +36,7 @@ const Newsletter = () => {
         transition={{ type: "tween", duration: 0.8 }}
         className="container"
       >
-        <img src={img} alt="Save Tax India"  />
+        <img src={img} alt="Save Tax India" />
         <div className="content">
           <h2>Stay Ahead with Tax Insights</h2>
           <p>
@@ -19,8 +44,15 @@ const Newsletter = () => {
             advice delivered straight to your inbox.
           </p>
           <div className="form_group">
-            <input type="text" placeholder="Enter Your Email Address" />
-            <button>Subscribe</button>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+              placeholder="Enter Your Email Address"
+            />
+            <button disabled={loading} onClick={handleSubmit}>
+              {loading ? <LoadingOutlined /> : "Subscribe"}
+            </button>
           </div>
         </div>
       </motion.div>

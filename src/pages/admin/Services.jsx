@@ -6,6 +6,7 @@ import NoData2 from "../../components/NoData2";
 import Swal from "sweetalert2";
 import { LoadingOutlined } from "@ant-design/icons";
 import UpdateService from "./modals/UpdateService";
+import ServiceDetailModal from "./modals/ServiceDetailModal";
 
 const Services = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,6 +20,8 @@ const Services = () => {
   const [dLoading, setDLoading] = useState(false);
   const [updateData, setUpdateData] = useState(null);
   const [updateModal, setUpdateModal] = useState(false);
+  const [detailOpen, setDetailOpen] = useState(false);
+  const [detail, setDetail] = useState(null);
 
   const fetchRecords = useCallback(async () => {
     try {
@@ -52,8 +55,8 @@ const Services = () => {
           const res = await deleteServicesAPI(id);
           if (res.data.data) {
             setDLoading(false);
+            await fetchRecords();
             Swal.fire("Deleted!", "The service has been deleted.", "success");
-            fetchRecords();
           }
         }
       });
@@ -124,7 +127,12 @@ const Services = () => {
                 content={
                   <div className="options_pop">
                     <ul>
-                      <li>
+                      <li
+                        onClick={() => {
+                          setDetail(d);
+                          setDetailOpen(true);
+                        }}
+                      >
                         <i className="bx bx-detail"></i>View Service
                       </li>
                       <li
@@ -188,6 +196,14 @@ const Services = () => {
           open={updateModal}
           setOpen={setUpdateModal}
           data={updateData}
+        />
+      )}
+
+      {detailOpen && (
+        <ServiceDetailModal
+          open={detailOpen}
+          setOpen={setDetailOpen}
+          data={detail}
         />
       )}
     </section>

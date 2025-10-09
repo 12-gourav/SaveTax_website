@@ -8,6 +8,8 @@ import DashboardContent from "./pages/admin/DashboardContent";
 import Services from "./pages/admin/Services";
 import ContactList from "./pages/admin/ContactList";
 import ConsulntList from "./pages/admin/ConsulntList";
+import News from "./pages/admin/News";
+import NewsLetter from "./pages/admin/NewsLetter";
 const Home = lazy(() => import("./pages/Home"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
@@ -49,14 +51,16 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />}>
             <Route path="/dashboard" element={<DashboardContent />} />
             <Route path="/dashboard/services" element={<Services />} />
+                 <Route
+              path="/dashboard/consulnt/clients"
+              element={<ConsulntList />}
+            />
             <Route
               path="/dashboard/contact/clients"
               element={<ContactList />}
             />
-            <Route
-              path="/dashboard/consulnt/clients"
-              element={<ConsulntList />}
-            />
+            <Route path="/dashboard/news" element={<News />} />
+            <Route path="/dashboard/newsletter" element={<NewsLetter />} />
           </Route>
         </Routes>
       </Suspense>

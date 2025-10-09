@@ -1,24 +1,22 @@
 import { DatePicker, Pagination, Skeleton } from "antd";
 import { useCallback, useEffect, useState } from "react";
-import { getContact } from "../../api/api";
+import { getContact, getNewsletter } from "../../api/api";
 import NoData from "../../components/NoData";
 import Loader from "../../components/Loader";
-import QueryDetailModal from "./modals/QueryDetailModal";
 
-const ContactList = () => {
+const NewsLetter = () => {
   const [state, setState] = useState([]);
   const [total, setTotal] = useState(0);
   const [current, setCurrent] = useState(1);
-  const [date, setDate] = useState(null);
   const [limit, setLimit] = useState(10);
   const [loading, setLoading] = useState(false);
-  const [detailOpen, setDetailOpen] = useState(false);
-  const [detail, setDetail] = useState("");
+  const [query, setQuery] = useState("");
+  const [search, setSearch] = useState(false);
 
   const fetchRecords = useCallback(async () => {
     try {
       setLoading(true);
-      const result = await getContact(current, limit, "Contact", date);
+      const result = await getNewsletter(current, limit, query);
       if (result?.data?.data) {
         setTotal(result?.data?.total);
         setState(result?.data?.data);
@@ -28,7 +26,7 @@ const ContactList = () => {
     } finally {
       setLoading(false);
     }
-  }, [current, date]);
+  }, [current, search]);
 
   useEffect(() => {
     fetchRecords();
@@ -40,49 +38,45 @@ const ContactList = () => {
 
   return (
     <section className="contact_list">
-      <h1 className="page_title">Contact Clients</h1>
-      <p className="page_dis">View and manage your contact clients.</p>
+      <h1 className="page_title">Newsletters</h1>
+      <p className="page_dis">
+        Manage and review all your newsletters updates in one place.
+      </p>
       <div className="table_head">
         <p>
           Showing {state.length} records, out of {total} available
         </p>
-        <DatePicker onChange={(date, dateString) => setDate(dateString)} />
+        <div className="group">
+          <input
+            type="text"
+            placeholder="Search by email"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button onClick={()=>setSearch(!search)}><i className='bx bx-search'></i></button>
+        </div>
       </div>
       <div className="table_wrapper">
         <table>
           <thead>
             <tr>
-              <th style={{ width: "120px" }}>Date</th>
-              <th>Name</th>
+              <th style={{width:"40%"}}>Date</th>
               <th>Email</th>
-              <th>Phone</th>
-              <th>Message</th>
             </tr>
           </thead>
           {loading ? (
-            <Loader map={[1, 2, 3, 4, 5]} colMap={[1, 2, 3, 4, 5]} />
+            <Loader map={[1, 2]} colMap={[1, 2]} />
           ) : state.length === 0 ? (
-            <NoData colspan={5} />
+            <NoData colspan={2} />
           ) : (
             <tbody>
               {state?.map((d, i) => (
-                <tr
-                  className={i % 2 === 0 ? "active" : ""}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setDetail(d);
-                    setDetailOpen(true);
-                  }}
-                >
+                <tr className={i % 2 === 0 ? "active" : ""}>
                   <td>{new Date(d.createdAt).toDateString()}</td>
-                  <td>{d.name}</td>
+
                   <td>
                     <a href={`mailto:${d.email}`}>{d.email}</a>
                   </td>
-                  <td>
-                    <a href={`tel:+91${d.phone}`}>+91 {d.phone}</a>
-                  </td>
-                  <td>{d.query}</td>
                 </tr>
               ))}
             </tbody>
@@ -103,15 +97,8 @@ const ContactList = () => {
           />
         )}
       </div>
-      {detailOpen && (
-        <QueryDetailModal
-          open={detailOpen}
-          setOpen={setDetailOpen}
-          data={detail}
-        />
-      )}
     </section>
   );
 };
 
-export default ContactList;
+export default NewsLetter;

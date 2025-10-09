@@ -10,6 +10,7 @@ const ConsultModal = ({ open, setOpen }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [query, setQuery] = useState("");
+  const [date, setDate] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
@@ -18,10 +19,11 @@ const ConsultModal = ({ open, setOpen }) => {
       if (email === "") return toast.error("Email is required");
       if (phone === "") return toast.error("Phone is required");
       if (query === "") return toast.error("Query is required");
+      if (date === "") return toast.error("Consultantion Date is required");
 
       setLoading(true);
 
-      const result = await createContact(name, email, phone, query, "Consulnt");
+      const result = await createContact(name, email, phone, query, "Consulnt",date);
       if (result?.data?.data) {
         toast.success(
           "Thank you for contacting us. We’ve received your query and will get back to you shortly."
@@ -85,6 +87,15 @@ const ConsultModal = ({ open, setOpen }) => {
               onChange={(e) => setPhone(e.target.value)}
               type="text"
               placeholder="Enter your contact number"
+            />
+          </div>
+          <div className="form_group">
+            <label>Consultation Date </label>
+            <input
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              type="date"
+              placeholder="Enter your consultantion date"
             />
           </div>
           <div className="form_group">

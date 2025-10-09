@@ -1,10 +1,39 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BarChart from "../../chart/BarChart";
-import { Modal, Popover } from "antd";
+import { Modal, Skeleton } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { getAnalyticsApi } from "../../api/api";
+import { LoadingOutlined } from "@ant-design/icons";
+import img from "../../assets/img/graph.svg";
+import img2 from "../../assets/img/user.svg";
 
 const DashboardContent = () => {
+  const { analytic } = useSelector((state) => state.analytics);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState("");
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const fetchRecords = async () => {
+    try {
+      setLoading(true);
+
+      const result = await getAnalyticsApi();
+      if (result?.data?.data) {
+        dispatch({ type: "addAnalytic", payload: result?.data?.data });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (analytic === null) {
+      fetchRecords();
+    }
+  }, [analytic]);
 
   return (
     <section className="dashboard_content">
@@ -22,11 +51,11 @@ const DashboardContent = () => {
               <p>Services Overview</p>
             </div>
             <div className="card_top_right">
-              <p>Last 30 Days</p>
+              <p>Last Days</p>
             </div>
           </div>
           <div className="badge">
-            <h2>40 </h2>
+            <h2>{loading ? <LoadingOutlined /> : analytic?.totalServices} </h2>
             <div className="badge_text">Running</div>
           </div>
 
@@ -45,7 +74,9 @@ const DashboardContent = () => {
             </div>
           </div>
           <div className="badge">
-            <h2 style={{ color: "oklch(75% 0.183 55.934)" }}>12 </h2>
+            <h2 style={{ color: "oklch(75% 0.183 55.934)" }}>
+              {loading ? <LoadingOutlined /> : analytic?.totalConsultants}{" "}
+            </h2>
             <div
               className="badge_text"
               style={{
@@ -65,14 +96,16 @@ const DashboardContent = () => {
               <div className="icon_box3">
                 <i className="bx bxs-user-plus"></i>
               </div>
-              <p>Clients</p>
+              <p>Contact Clients</p>
             </div>
             <div className="card_top_right">
               <p>Last 30 Days</p>
             </div>
           </div>
           <div className="badge">
-            <h2 style={{ color: "oklch(67.3% 0.182 276.935)" }}>20+ </h2>
+            <h2 style={{ color: "oklch(67.3% 0.182 276.935)" }}>
+              {loading ? <LoadingOutlined /> : analytic?.totalClients}{" "}
+            </h2>
             <div
               className="badge_text"
               style={{
@@ -80,11 +113,11 @@ const DashboardContent = () => {
                 color: "oklch(67.3% 0.182 276.935)",
               }}
             >
-              Register
+              Contact
             </div>
           </div>
 
-          <p>Total registered clients in the platform.</p>
+          <p>Total contact clients in the platform.</p>
         </div>
       </div>
       <div className="dashboard_content2">
@@ -92,31 +125,83 @@ const DashboardContent = () => {
           <h2> Registrations Overview</h2>
           <p>Clients vs Consultant Clients (Last 6 months)</p>
           <div className="bar_chart">
-            <BarChart
-              clientsData={[15, 22, 18, 30, 28, 35]}
-              consultantsData={[5, 9, 7, 12, 10, 15]}
-            />
+            {loading ? (
+              <Skeleton.Button style={{ height: "280px" }} block active />
+            ) : analytic.contactClients?.length === 0 &&
+              analytic?.consultantClients?.length === 0 ? (
+              <div
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  style={{
+                    width: "250px",
+                    height: "200px",
+                    objectFit: "contain",
+                  }}
+                  src={img}
+                />
+              </div>
+            ) : (
+              <BarChart
+                clientsData={analytic?.contactClients || []}
+                consultantsData={analytic?.consultantClients || []}
+              />
+            )}
           </div>
         </div>
         <div className="dashboard_content2_right">
           <h2>Today Clients</h2>
           <p>List the leaads of consultant or clients</p>
           <div className="leads">
-            {[1, 2, 3, 4, 5, 6, 7, 8]?.map((d) => (
+            {loading ? (
+              [1, 2, 3, 4, 5, 6]?.map((d) => (
+                <div className="lead_wrap">
+                  <Skeleton.Button active block />
+                </div>
+              ))
+            ) : analytic?.todayClients?.length === 0 ? (
               <div
-                className="lead_wrap"
-                onClick={() => {
-                  setOpen(d);
-                  setData(d);
+                style={{
+                  width: "100%",
+                  height: "300px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                <div className="av">G</div>
-                <div className="av_content">
-                  <h5>Gaurav</h5>
-                  <p>Email: gourav@gmail.com</p>
-                </div>
+                <img
+                  style={{
+                    width: "250px",
+                    height: "200px",
+                    objectFit: "contain",
+                  }}
+                  src={img2}
+                />
               </div>
-            ))}
+            ) : (
+              analytic.todayClients?.map((d) => (
+                <div
+                  key={d?._id}
+                  className="lead_wrap"
+                  onClick={() => {
+                    setOpen(d);
+                    setData(d);
+                  }}
+                >
+                  <div className="av">{d.name[0]}</div>
+                  <div className="av_content">
+                    <h5>{d?.name}</h5>
+                    <p>Email: {d?.email}</p>
+                  </div>
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
@@ -145,19 +230,18 @@ const PopModal = ({ open, setOpen, data }) => {
         <div className="pop_top">
           <div className="av">G</div>
           <div className="av_content">
-            <h5>Gaurav</h5>
-            <p>Email: gourav@gmail.com</p>
+            <h5>{data?.name}</h5>
+            <p>
+              Email: <a href={`mailto:${data.email}`}>{data.email}</a>
+            </p>
           </div>
         </div>
         <div className="pop_body">
           <h6>Query:</h6>
-          <p>
-            If you don’t want all window scrolls to close it, but only when the
-            parent div scrolls:If you don’t want all window scrolls to close it,
-            but only when the parent div scrolls:If you don’t want all window
-            scrolls to close it, but only when the parent div scrolls:
-          </p>
-          <button>Call Now</button>
+          <p>{data?.query}</p>
+          <button onClick={() => (window.location.href = `tel:${data?.phone}`)}>
+            Call Now
+          </button>
         </div>
       </div>
     </Modal>
