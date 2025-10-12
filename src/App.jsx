@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import img from "./assets/img/logo_blue.svg";
 import Login from "./pages/Login";
 import { Toaster } from "react-hot-toast";
@@ -10,11 +10,38 @@ import ContactList from "./pages/admin/ContactList";
 import ConsulntList from "./pages/admin/ConsulntList";
 import News from "./pages/admin/News";
 import NewsLetter from "./pages/admin/NewsLetter";
+import { useDispatch } from "react-redux";
+import { loadAPI } from "./api/api";
+import AuthCheck from "./pages/AuthCheck";
 const Home = lazy(() => import("./pages/Home"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
 
 const App = () => {
+  const [authLoading, setAuthLoading] = useState(false);
+  const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
+
+  const loadUser = async () => {
+    try {
+      setAuthLoading(true);
+      const result = await loadAPI(token);
+      if (result?.data?.data) {
+        dispatch({ type: "load", payload: result?.data?.data });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setAuthLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (token) {
+      loadUser();
+    }
+  }, [token]);
+
   useEffect(() => {
     const handleScroll = () => {
       const header = document.querySelector("header");
@@ -47,11 +74,21 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/contact-us" element={<ContactUs />} />
           <Route path="/services/:name" element={<ServiceDetail />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />}>
+          <Route
+            path="/auth/login"
+            element={<Login authLoading={authLoading} />}
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <AuthCheck>
+                <Dashboard />
+              </AuthCheck>
+            }
+          >
             <Route path="/dashboard" element={<DashboardContent />} />
             <Route path="/dashboard/services" element={<Services />} />
-                 <Route
+            <Route
               path="/dashboard/consulnt/clients"
               element={<ConsulntList />}
             />

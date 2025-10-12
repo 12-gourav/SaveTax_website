@@ -2,14 +2,21 @@ import axios from "axios";
 
 const url = import.meta.env.VITE_APP_API_URL;
 
-export const createContact = async (name, email, phone, query, category,date) => {
+export const createContact = async (
+  name,
+  email,
+  phone,
+  query,
+  category,
+  date
+) => {
   return axios.post(url + "create/query", {
     name,
     email,
     phone,
     query,
     category,
-    date:date||null
+    date: date || null,
   });
 };
 
@@ -92,7 +99,6 @@ export const createNews = async (title, description, status) => {
   });
 };
 
-
 export const deleteNewsAPI = async (id) => {
   return axios.get(url + "delete/news", {
     params: {
@@ -101,11 +107,23 @@ export const deleteNewsAPI = async (id) => {
   });
 };
 
-
 export const getAnalyticsApi = async () => {
   return axios.get(url + "get/analytics", {
-    params: {
-    
+    params: {},
+  });
+};
+
+export const loginAPI = async (email, password) => {
+  return axios.post(url + "login", {
+    email,
+    password,
+  });
+};
+
+export const loadAPI = async (token) => {
+  return axios.get(url + "get/analytics", {
+    headers: {
+      token,
     },
   });
 };

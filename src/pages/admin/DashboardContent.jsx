@@ -127,7 +127,7 @@ const DashboardContent = () => {
           <div className="bar_chart">
             {loading ? (
               <Skeleton.Button style={{ height: "280px" }} block active />
-            ) : analytic.contactClients?.length === 0 &&
+            ) : analytic?.contactClients?.length === 0 &&
               analytic?.consultantClients?.length === 0 ? (
               <div
                 style={{
@@ -185,7 +185,7 @@ const DashboardContent = () => {
                 />
               </div>
             ) : (
-              analytic.todayClients?.map((d) => (
+              analytic?.todayClients?.map((d) => (
                 <div
                   key={d?._id}
                   className="lead_wrap"
