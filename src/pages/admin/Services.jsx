@@ -22,11 +22,12 @@ const Services = () => {
   const [updateModal, setUpdateModal] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
   const [detail, setDetail] = useState(null);
+  const token = localStorage.getItem("token")
 
   const fetchRecords = useCallback(async () => {
     try {
       setLoading(true);
-      const result = await getServicesAPI(current, limit, query);
+      const result = await getServicesAPI(current, limit, query,token);
       if (result?.data?.data) {
         setTotal(result?.data?.total);
         setState(result?.data?.data);
@@ -36,7 +37,7 @@ const Services = () => {
     } finally {
       setLoading(false);
     }
-  }, [current, search]);
+  }, [current, search,limit]);
 
   const handleDelete = (id) => {
     try {
@@ -52,7 +53,7 @@ const Services = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           setDLoading(true);
-          const res = await deleteServicesAPI(id);
+          const res = await deleteServicesAPI(id,token);
           if (res.data.data) {
             setDLoading(false);
             await fetchRecords();
@@ -74,6 +75,11 @@ const Services = () => {
   useEffect(() => {
     setCurrent(1);
   }, [limit]);
+
+
+
+
+
   return (
     <section className="service_list">
       <h1 className="page_title">Services</h1>
@@ -103,7 +109,7 @@ const Services = () => {
       <div className="service_list_wrapper">
         {loading ? (
           [1, 2, 3, 4, 5, 6]?.map((d) => (
-            <div className="service_list_card2">
+            <div className="service_list_card2" key={d}>
               <Skeleton.Button
                 style={{ height: "170px", width: 300 }}
                 active
@@ -115,10 +121,10 @@ const Services = () => {
         ) : !state.length ? (
           <NoData2 colspan={5} />
         ) : (
-          state?.map((d) => (
-            <div className="service_list_card2" style={{ background: d.color }}>
+          state?.map((d,i) => (
+            <div className="service_list_card2" style={{ background: d.color }} key={i}>
               <div className="box">
-                <img src={d.cardImg.url} />
+                <img src={d?.cardImg?.url||""} />
               </div>
               <h3 style={{ color: d.textColor }}>{d.title}</h3>
               <p>{String(d.shortDescription).slice(0, 100)}...</p>
@@ -168,7 +174,7 @@ const Services = () => {
         )}
       </div>
       <div className="service_list_foot">
-        {loading && total > limit && (
+        {loading===false && total > limit && (
           <Pagination
             total={total}
             current={current}

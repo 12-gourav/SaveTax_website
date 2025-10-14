@@ -24,3 +24,10 @@ export const analytics = createReducer({ analytic: null }, (builder) => {
     state.analytic = action.payload;
   });
 });
+
+
+export const services = createReducer({ services: [] }, (builder) => {
+  builder.addCase("addServices", (state, action) => {
+    state.services = action.payload;
+  });
+});

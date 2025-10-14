@@ -13,12 +13,13 @@ const DashboardContent = () => {
   const [data, setData] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const token = localStorage.getItem("token");
 
   const fetchRecords = async () => {
     try {
       setLoading(true);
 
-      const result = await getAnalyticsApi();
+      const result = await getAnalyticsApi(token);
       if (result?.data?.data) {
         dispatch({ type: "addAnalytic", payload: result?.data?.data });
       }
@@ -156,12 +157,12 @@ const DashboardContent = () => {
           </div>
         </div>
         <div className="dashboard_content2_right">
-          <h2>Today Clients</h2>
+          <h2>Recent Clients</h2>
           <p>List the leaads of consultant or clients</p>
           <div className="leads">
             {loading ? (
               [1, 2, 3, 4, 5, 6]?.map((d) => (
-                <div className="lead_wrap">
+                <div className="lead_wrap" key={d}>
                   <Skeleton.Button active block />
                 </div>
               ))

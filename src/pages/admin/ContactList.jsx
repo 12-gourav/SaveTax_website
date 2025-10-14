@@ -14,11 +14,12 @@ const ContactList = () => {
   const [loading, setLoading] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
   const [detail, setDetail] = useState("");
+  const token = localStorage.getItem("token");
 
   const fetchRecords = useCallback(async () => {
     try {
       setLoading(true);
-      const result = await getContact(current, limit, "Contact", date);
+      const result = await getContact(current, limit, "Contact", date,token);
       if (result?.data?.data) {
         setTotal(result?.data?.total);
         setState(result?.data?.data);
@@ -67,6 +68,7 @@ const ContactList = () => {
             <tbody>
               {state?.map((d, i) => (
                 <tr
+                key={i}
                   className={i % 2 === 0 ? "active" : ""}
                   style={{ cursor: "pointer" }}
                   onClick={() => {
@@ -90,7 +92,7 @@ const ContactList = () => {
         </table>
       </div>
       <div className="table_foot">
-        {loading && total > limit && (
+        {!loading && total > limit && (
           <Pagination
             total={total}
             current={current}

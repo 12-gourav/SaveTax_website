@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { serviceData } from "../constants/services";
 import img from "../assets/img/cute.png";
-
-import logoWhite from "../assets/img/logo_white.svg";
-import logoDark from "../assets/img/logo_blue.svg";
-
+import logoDark from "../assets/img/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchServicesAPI } from "../api/api";
+import { Skeleton } from "antd";
 
 const Navbar = ({ setModalOpen }) => {
   const [open, setOpen] = useState(null);
@@ -13,7 +13,7 @@ const Navbar = ({ setModalOpen }) => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  
+  const Navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -32,17 +32,32 @@ const Navbar = ({ setModalOpen }) => {
     <>
       <header ref={categoryRef}>
         <div className="left">
-          <img src={logoDark} alt="save tax india"/>
-          <h2>
-            Save<span> Tax</span> India
-          </h2>
+          <img
+            src={logoDark}
+            alt="save tax india"
+            onClick={() => Navigate("/")}
+          />
+          <div className="logo_text" onClick={() => Navigate("/")}>
+            <h2>Save Tax</h2>
+            <p> Consultancy Service</p>
+          </div>
         </div>
         <div className="right">
-          <Link to={"/"} className={location.pathname === "/" && location.hash==='' ? "active" : ""}>
+          <Link
+            to={"/"}
+            className={
+              location.pathname === "/" && location.hash === "" ? "active" : ""
+            }
+          >
             Home
           </Link>
           <a onClick={() => setOpen(true)}>Services</a>
-          <Link to={"/#about"} className={location.hash === "#about" ? "active" : ""}>About Us</Link>
+          <Link
+            to={"/#about"}
+            className={location.hash === "#about" ? "active" : ""}
+          >
+            About Us
+          </Link>
           <Link
             to={"/contact-us"}
             className={location.pathname === "/contact-us" ? "active" : ""}
@@ -126,42 +141,76 @@ const Navbar = ({ setModalOpen }) => {
 export default Navbar;
 
 export const Services = () => {
+  const { services } = useSelector((state) => state.services);
+  const [state, setState] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+
+  const fetchRecords = async () => {
+    try {
+      setLoading(true);
+      const result = await fetchServicesAPI();
+      if (result?.data?.data) {
+        setState(result?.data?.data);
+        dispatch({ type: "addServices", payload: result?.data?.data });
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (services?.length === 0) {
+      fetchRecords();
+    } else {
+      setState(services);
+    }
+  }, [services]);
+
   return (
     <div className="service_pop_content">
       <div className="sc1">
         <h5>Compilance Services</h5>
         <ul>
-          {serviceData
-            ?.filter((f) => f.category === "Compliance")
-            ?.map((d) => (
-              <li key={d.id}>
-                <Link to={`/services/${encodeURI(d.title)}`}>{d.title}</Link>
-              </li>
-            ))}
+          {loading
+            ? [1, 2]?.map((d) => <Skeleton paragraph={2} active />)
+            : state
+                ?.filter((f) => f?.category === "Compliance")
+                ?.map((d) => (
+                  <li key={d._id}>
+                    <Link to={`/services/${encodeURI(d._id)}`}>{d?.title}</Link>
+                  </li>
+                ))}
         </ul>
       </div>
       <div className="sc1">
         <h5>Registrations Services</h5>
         <ul>
-          {serviceData
-            ?.filter((f) => f.category === "Registrations")
-            ?.map((d) => (
-              <li key={d.id}>
-                <Link to={`/services/${encodeURI(d.title)}`}>{d.title}</Link>
-              </li>
-            ))}
+          {loading
+            ? [1, 2]?.map((d) => <Skeleton paragraph={2} active />)
+            : state
+                ?.filter((f) => f?.category === "Registrations")
+                ?.map((d) => (
+                  <li key={d?._id}>
+                    <Link to={`/services/${encodeURI(d._id)}`}>{d?.title}</Link>
+                  </li>
+                ))}
         </ul>
       </div>
       <div className="sc1">
         <h5>Other Services Services</h5>
         <ul>
-          {serviceData
-            ?.filter((f) => f.category === "Other Services")
-            ?.map((d) => (
-              <li key={d.id}>
-                <Link to={`/services/${encodeURI(d.title)}`}>{d.title}</Link>
-              </li>
-            ))}
+          {loading
+            ? [1, 2]?.map((d) => <Skeleton paragraph={2} active />)
+            : state
+                ?.filter((f) => f?.category === "Other Services")
+                ?.map((d) => (
+                  <li key={d?._id}>
+                    <Link to={`/services/${encodeURI(d._id)}`}>{d?.title}</Link>
+                  </li>
+                ))}
         </ul>
       </div>
       <div className="sc1">

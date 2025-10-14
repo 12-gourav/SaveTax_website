@@ -1,6 +1,7 @@
 import { Modal } from "antd";
 
 const ServiceDetailModal = ({ open, setOpen, data }) => {
+  console.log(data)
   return (
     <Modal
       open={open}
@@ -20,8 +21,8 @@ const ServiceDetailModal = ({ open, setOpen, data }) => {
         <div className="service_detail_content">
           <div className="service_detail_left">
             <h3>Benifits</h3>
-            {data?.benefits?.map((z) => (
-              <li>z</li>
+            {data?.benefits?.map((z,i) => (
+              <li>{i+1}. {z}</li>
             ))}
           </div>
           <div className="service_detail_right">

@@ -20,7 +20,7 @@ export const createContact = async (
   });
 };
 
-export const getContact = async (page, size, category, date) => {
+export const getContact = async (page, size, category, date, token) => {
   return axios.get(url + "get/query", {
     params: {
       page,
@@ -28,46 +28,50 @@ export const getContact = async (page, size, category, date) => {
       category,
       date,
     },
+    headers: { token },
   });
 };
 
-export const createServiceAPI = async (myform) => {
+export const createServiceAPI = async (myform, token) => {
   return axios.post(url + "create/service", myform, {
-    headers: { "Content-Type": "multipart/form-data" },
+    headers: { "Content-Type": "multipart/form-data", token },
   });
 };
 
-export const updateServiceAPI = async (myform) => {
+export const updateServiceAPI = async (myform, token) => {
   return axios.post(url + "update/service", myform, {
-    headers: { "Content-Type": "multipart/form-data" },
+    headers: { "Content-Type": "multipart/form-data", token },
   });
 };
 
-export const getServicesAPI = async (page, size, query) => {
+export const getServicesAPI = async (page, size, query, token) => {
   return axios.get(url + "get/service", {
     params: {
       page,
       limit: size,
       query,
     },
+    headers: { token },
   });
 };
 
-export const deleteServicesAPI = async (id) => {
+export const deleteServicesAPI = async (id, token) => {
   return axios.get(url + "delete/service", {
     params: {
       id,
     },
+    headers: { token },
   });
 };
 
-export const getNewsletter = async (page, size, query) => {
+export const getNewsletter = async (page, size, query, token) => {
   return axios.get(url + "get/newsletter", {
     params: {
       page,
       size,
       query,
     },
+    headers: { token },
   });
 };
 
@@ -79,37 +83,53 @@ export const CreateNewsletter = async (email) => {
   });
 };
 
-export const getNews = async (page, size, query) => {
+export const getNews = async (page, size, query, token) => {
   return axios.get(url + "get/news", {
     params: {
       page,
       size,
       query,
     },
+    headers: { token },
   });
 };
 
-export const createNews = async (title, description, status) => {
+export const createNews = async (title, description, status, token) => {
   return axios.get(url + "create/news", {
     params: {
       title,
       description,
       status,
     },
+    headers: { token },
   });
 };
 
-export const deleteNewsAPI = async (id) => {
+export const updateNews = async (title, description, status, id, token) => {
+  return axios.get(url + "update/news", {
+    params: {
+      title,
+      description,
+      status,
+      id,
+    },
+    headers: { token },
+  });
+};
+
+export const deleteNewsAPI = async (id, token) => {
   return axios.get(url + "delete/news", {
     params: {
       id,
     },
+    headers: { token },
   });
 };
 
-export const getAnalyticsApi = async () => {
+export const getAnalyticsApi = async (token) => {
   return axios.get(url + "get/analytics", {
     params: {},
+    headers: { token },
   });
 };
 
@@ -126,4 +146,27 @@ export const loadAPI = async (token) => {
       token,
     },
   });
+};
+
+export const sendMailAPI = async (name, email, query, message, token) => {
+  return axios.get(url + "send/mail", {
+    params: { name, email, query, message },
+    headers: {
+      token,
+    },
+  });
+};
+
+export const fetchNewsAPI = async () => {
+  return axios.get(url + "fetch/news", {});
+};
+
+
+export const fetchServicesAPI = async () => {
+  return axios.get(url + "fetch/service", {});
+};
+
+
+export const fetchServiceDetailAPI = async (id) => {
+  return axios.get(url + "service/detail", {params:{id}});
 };

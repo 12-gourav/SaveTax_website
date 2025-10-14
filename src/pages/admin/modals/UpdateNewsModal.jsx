@@ -1,15 +1,15 @@
 import { Modal } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { createNews } from "../../../api/api";
+import { createNews, updateNews } from "../../../api/api";
 import { LoadingOutlined } from "@ant-design/icons";
 
-const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
+const UpdateNewsModal = ({ open, setOpen, fetchRecords, data }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
   const handleSubmit = async () => {
     try {
@@ -17,11 +17,11 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
       if (description === "") return toast.error("Description is required");
       if (status === "") return toast.error("Status is required");
 
-      const result = await createNews(title, description, status,token);
+      const result = await updateNews(title, description, status,data?._id, token);
       if (result?.data?.data) {
         await fetchRecords();
         setOpen(false);
-        toast.success("News Create Successfully");
+        toast.success("News Update Successfully");
       }
     } catch (error) {
       console.log(error);
@@ -30,6 +30,14 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (data) {
+      setTitle(data?.title);
+      setDescription(data?.description);
+      setStatus(data?.status);
+    }
+  }, [data]);
 
   return (
     <Modal
@@ -40,7 +48,7 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
       onCancel={() => setOpen(false)}
       title={
         <div className="modal_head">
-          <h5>Create News</h5>
+          <h5>Update News</h5>
         </div>
       }
     >
@@ -72,11 +80,11 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
           </select>
         </div>
         <button disabled={loading} onClick={handleSubmit}>
-          {loading ? <LoadingOutlined /> : "Submit"}
+          {loading ? <LoadingOutlined /> : "Update"}
         </button>
       </div>
     </Modal>
   );
 };
 
-export default CreateNewsModal;
+export default UpdateNewsModal;

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import img from "../assets/img/logo_blue.svg";
+import img from "../assets/img/logo.png";
 import { toast } from "react-hot-toast";
 import { LoadingOutlined } from "@ant-design/icons";
 import { loginAPI } from "../api/api";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Login = ({authLoading}) => {
     const { isActive } = useSelector((state) => state.users);
@@ -43,7 +43,7 @@ const Login = ({authLoading}) => {
 
 
     useEffect(() => {
-    if (isActive) {
+    if (isActive && loading===false) {
       if (location.state === null) {
         Navigate("/");
       } else {
@@ -59,7 +59,7 @@ const Login = ({authLoading}) => {
     <section className="login">
       <div className="login_form">
         <img src={img} />
-        <h2>Save Tax India Consultancy Service</h2>
+        <h2>Save Tax <span>Consultancy Service</span></h2>
         <div className="form_group">
           <label>Email</label>
           <input
@@ -78,6 +78,10 @@ const Login = ({authLoading}) => {
             placeholder="Enter your password"
           />
         </div>
+        <div className="link-a">
+ <Link to={"/"}>Back to home page?</Link>
+        </div>
+       
         <button disabled={loading} onClick={handleSubmit}>
           {loading ? <LoadingOutlined /> : "Login"}
         </button>

@@ -25,6 +25,7 @@ const CreateService = ({ setOpen,fetchRecords }) => {
   const [bannerImg, setBannerImg] = useState("");
   const [publish, setPublish] = useState("");
   const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token")
 
   const handleSubmit = async () => {
     try {
@@ -61,7 +62,7 @@ const CreateService = ({ setOpen,fetchRecords }) => {
       myForm.append("cardImg", cardImg);
       myForm.append("bannerImg", bannerImg);
 
-      const result = await createServiceAPI(myForm);
+      const result = await createServiceAPI(myForm,token);
       if (result.data.data) {
         toast.success("Service Create Successfully");
         await fetchRecords()

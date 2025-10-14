@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { DashboardRoutes } from "../../constants/dash";
-import img from "../../assets/img/logo_blue.svg";
+import img from "../../assets/img/logo.png";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
@@ -26,20 +26,23 @@ const Dashboard = () => {
           localStorage.removeItem("token");
           dispatch({ type: "logout" });
           toast.success("Logout Successfull");
-          navigate("/auth/login")
+          navigate("/auth/login");
         }
       });
     } catch (error) {
       console.log(error);
-    } 
+    }
   };
 
   return (
     <section className="dashboard">
       <div className="dashboard_left">
         <div className="dash_head">
-          <img src={img} />
-          <h2>Save Tax India</h2>
+          <img src={img} onClick={()=>navigate("/")} />
+          <div className="logo_text" onClick={()=>navigate("/")}>
+            <h2>Save Tax</h2>
+            <p>Consultancy Services</p>
+          </div>
         </div>
 
         <div className="dash_nav">

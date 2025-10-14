@@ -48,7 +48,7 @@ header {
   align-items: center;
   justify-content: space-between;
   transition: 0.6s;
-  padding: 20px 100px;
+  padding: 10px 100px;
   z-index: 99;
 
   .left {
@@ -56,16 +56,20 @@ header {
     align-items: center;
     gap: 10px;
     img {
-      width: 35px;
-      height: 35px;
+      width: 50px;
+      height: 50px;
       object-fit: contain;
     }
-    h2 {
-      color: #fff;
-      font-size: 1rem;
-      font-weight: 600;
-      span {
-        color: #0a66c2;
+    .logo_text {
+      h2 {
+        color: #fff;
+        font-size: 1rem;
+        font-weight: 600;
+      }
+      p {
+        color: #17c964;
+        font-size: 0.75rem;
+        font-weight: 500;
       }
     }
   }
@@ -103,12 +107,15 @@ header {
 header.sticky {
   background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(15px);
-  padding: 20px 100px;
+  padding: 10px 100px;
   border-bottom: 1px solid #e4e4e4;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  h2 {
-    color: #0a66c2;
+  .logo_text {
+    h2 {
+      color: #0a66c2;
+    }
   }
+
   .right {
     a {
       color: #000;
@@ -2016,6 +2023,12 @@ section.service_detail {
     }
   }
 
+  .loading{
+    width: 100%;
+    margin-top: 5rem;
+    padding: 10px 100px;
+  }
+
   .detail_header {
     width: 100%;
     margin-top: 6rem;
@@ -2068,37 +2081,40 @@ section.service_detail {
     display: flex;
     .left {
       width: 30%;
+       h3 {
+        font-weight: 500;
+        font-size: 0.9rem;
+        color: #000;
+        margin-bottom: 10px;
+      }
+      li {
+        font-size: 0.8rem;
+        color: #494949;
+        list-style: none;
+        margin-bottom: 5px;
+        line-height: 1.2rem;
+      }
     }
     .right {
       width: 70%;
       padding-left: 1rem;
-
-      .part {
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        h1 {
-          font-size: 1rem;
-          font-weight: 500;
-        }
-        p {
-          font-size: 0.85rem;
-          color: #494949;
-          line-height: 1.2rem;
-        }
-        ul {
-          padding-left: 0.8rem;
-        }
-        li {
-          font-size: 0.85rem;
-          color: #494949;
-          margin-bottom: 0.6rem;
-        }
+      font-size: 0.85rem;
+      color: #494949;
+      padding-top: 0.5rem;
+      h1 {
+        color: #000;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin: 0;
+        margin-bottom: 10px;
       }
-      b {
-        font-size: 0.8rem;
-        margin-top: 1rem;
+      li {
+        margin-bottom: 5px;
+      }
+      p {
+        margin-bottom: 5px;
+        text-align: justify;
+        line-height: 1.2rem;
       }
     }
   }
@@ -2106,12 +2122,16 @@ section.service_detail {
 
 @media (max-width: 900px) {
   section.service_detail {
+        .loading{
+        padding: 10px;
+      }
     .detail_header {
       padding: 10px;
       margin-top: 4rem;
       h1 {
         font-size: 1.5rem;
       }
+  
     }
     .detail_body {
       padding: 10px;
@@ -2161,6 +2181,9 @@ section.service_detail {
   h2 {
     color: #0a66c2;
     font-size: 1.5rem;
+    span{
+      color: #10b981;
+    }
   }
 }
 
@@ -2182,18 +2205,32 @@ section.login {
     justify-content: center;
     flex-direction: column;
     img {
-      width: 40px;
-      height: 40px;
+      width: 60px;
+      height: 60px;
       object-fit: contain;
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
     h2 {
-      color: #000000;
+      color: #0a66c2;
       font-size: 0.85rem;
       margin-bottom: 1rem;
       text-align: center;
       width: 100%;
-      font-weight: 500;
+      font-weight: 600;
+      span {
+        color: #17c964;
+      }
+    }
+    .link-a {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    a {
+      text-align: left;
+      text-decoration: none;
+      color: #494949;
+      font-size: 0.75rem;
+      width: fit-content;
     }
     .form_group {
       width: 100%;
@@ -2263,13 +2300,22 @@ section.dashboard {
       justify-content: flex-start;
       gap: 10px;
       img {
-        width: 35px;
-        height: 35px;
+        width: 40px;
+        height: 40px;
         object-fit: contain;
+        cursor: pointer;
       }
-      h2 {
-        color: #0a66c2;
-        font-size: 1rem;
+      .logo_text {
+        cursor: pointer;
+        h2 {
+          color: #0a66c2;
+          font-size: 0.9rem;
+        }
+        p {
+          color: #10b981;
+          font-size: 0.75rem;
+          font-weight: 600;
+        }
       }
     }
     .dash_nav {
@@ -2703,7 +2749,7 @@ section.contact_list {
           th:nth-child(1) {
             border-top-left-radius: 5px;
           }
-          
+
           th:last-child {
             border-top-right-radius: 5px;
           }
@@ -3082,6 +3128,7 @@ section.service_list {
         font-size: 0.8rem;
         color: #494949;
         list-style: none;
+        margin-bottom: 5px;
       }
     }
     .service_detail_right {
@@ -3138,7 +3185,7 @@ section.service_list {
       font-size: 0.8rem;
     }
   }
-  button{
+  button {
     background: #0a66c2;
     color: #fff;
     border: none;
@@ -3150,20 +3197,19 @@ section.service_list {
   }
 }
 
-
-
-.word_wrap{
+.word_wrap {
   width: 100%;
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
-  .text_wrap{
+  .text_wrap {
     width: 100%;
-    h4{
+    h4 {
       color: #0a66c2;
       font-weight: 500;
+      font-size: 0.75rem;
     }
-    p{
+    p {
       color: #494949;
       font-size: 0.8rem;
       text-align: justify;
@@ -3171,13 +3217,13 @@ section.service_list {
   }
 }
 
-.reply{
-  p{
+.reply {
+  p {
     font-size: 0.75rem;
     color: #6d6d6d;
     text-align: justify;
   }
-  textarea{
+  textarea {
     width: 100%;
     border: 1px solid #e4e4e4;
     border-radius: 5px;
@@ -3186,7 +3232,7 @@ section.service_list {
     margin-top: 0.5rem;
     outline: none;
   }
-  button{
+  button {
     background: #0a66c2;
     color: #fff;
     border: none;
@@ -3198,7 +3244,7 @@ section.service_list {
   }
 }
 
-button.p{
+button.p {
   border: none;
   outline: none;
   color: #17c964;
@@ -3208,8 +3254,7 @@ button.p{
   border-radius: 5px;
 }
 
-
-button.u{
+button.u {
   border: none;
   outline: none;
   color: #c91717;

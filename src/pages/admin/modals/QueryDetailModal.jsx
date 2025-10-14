@@ -1,7 +1,35 @@
 import { Modal } from "antd";
-import React from "react";
-
+import React, { useState } from "react";
+import { LoadingOutlined } from "@ant-design/icons";
+import toast from "react-hot-toast";
+import { sendMailAPI } from "../../../api/api";
 const QueryDetailModal = ({ open, setOpen, data }) => {
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const token = localStorage.getItem("token")
+
+  const handleSend = async () => {
+    try {
+      setLoading(true);
+      if (message === "") return toast.error("Message is required");
+      const result = await sendMailAPI(
+        data?.name,
+        data?.email,
+        data?.query,
+        message,
+        token
+      );
+      if (result?.data?.data) {
+        toast.success("Mail Send Successfully");
+        setOpen(false);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Modal
       width={800}
@@ -48,8 +76,14 @@ const QueryDetailModal = ({ open, setOpen, data }) => {
           You can reply to user queries here. Please ensure your responses are
           clear, professional, and address the user's concern accurately.
         </p>
-        <textarea placeholder="reply"></textarea>
-        <button>Send</button>
+        <textarea
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Reply to this message…"
+        ></textarea>
+        <button disabled={loading} onClick={handleSend}>
+          {loading ? <LoadingOutlined /> : "Send"}
+        </button>
       </div>
     </Modal>
   );

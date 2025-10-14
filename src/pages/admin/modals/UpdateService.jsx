@@ -25,6 +25,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
   const [bannerImg, setBannerImg] = useState(null);
   const [publish, setPublish] = useState("");
   const [loading, setLoading] = useState(false);
+  const token  = localStorage.getItem("token")
 
   const handleUpdate = async () => {
     try {
@@ -51,7 +52,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
       myForm.append("shortDescription", short);
       myForm.append("longDescription", long);
       myForm.append("category", category);
-      myForm.append("benifits", benifits);
+      myForm.append("benifits", JSON.stringify(benifits));
       myForm.append("metaTitle", seoTitle);
       myForm.append("metaDescription", seoDescription);
       myForm.append("keyword", keyword);
@@ -68,7 +69,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
         myForm.append("imgFlag", "no");
       }
 
-      const result = await updateServiceAPI(myForm);
+      const result = await updateServiceAPI(myForm,token);
       if (result.data.data) {
         toast.success("Service Create Successfully");
         await fetchRecords();
@@ -126,7 +127,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
       onCancel={() => setOpen(false)}
       title={
         <div className="modal_head">
-          <h5>Create Service</h5>
+          <h5>Update Service</h5>
         </div>
       }
       footer={

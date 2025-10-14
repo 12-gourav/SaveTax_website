@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import { lazy, Suspense, useEffect, useState } from "react";
-import img from "./assets/img/logo_blue.svg";
+import img from "./assets/img/logo.png";
 import Login from "./pages/Login";
 import { Toaster } from "react-hot-toast";
 import Dashboard from "./pages/admin/Dashboard";
@@ -59,13 +59,17 @@ const App = () => {
     };
   }, []);
 
+
+ 
+
+
   return (
     <>
       <Suspense
         fallback={
           <div className="split">
             <img src={img} alt="Save India Tax" />
-            <h2>Save Tax India</h2>
+            <h2>Save Tax <span>Consultancy Service</span></h2>
           </div>
         }
       >

@@ -6,6 +6,7 @@ import Loader from "../../components/Loader";
 import CreateNewsModal from "./modals/CreateNewsModal";
 import Swal from "sweetalert2";
 import NewsDetailModal from "./modals/NewsDetailModal";
+import UpdateNewsModal from "./modals/UpdateNewsModal";
 
 const News = () => {
   const [state, setState] = useState([]);
@@ -22,11 +23,12 @@ const News = () => {
   const [updateData, setUpdateData] = useState("");
   const [updateModal, setUpdateModal] = useState(false);
   const [dLoading, setDLoading] = useState(false);
+  const token = localStorage.getItem("token");
 
   const fetchRecords = useCallback(async () => {
     try {
       setLoading(true);
-      const result = await getNews(current, limit, query);
+      const result = await getNews(current, limit, query, token);
       if (result?.data?.data) {
         setTotal(result?.data?.total);
         setState(result?.data?.data);
@@ -52,7 +54,7 @@ const News = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           setDLoading(true);
-          const res = await deleteNewsAPI(id);
+          const res = await deleteNewsAPI(id, token);
           if (res.data.data) {
             setDLoading(false);
             await fetchRecords();
@@ -118,7 +120,7 @@ const News = () => {
           ) : (
             <tbody>
               {state?.map((d, i) => (
-                <tr className={i % 2 === 0 ? "active" : ""}>
+                <tr className={i % 2 === 0 ? "active" : ""} key={i}>
                   <td>{new Date(d.createdAt).toDateString()}</td>
                   <td>{d?.title}</td>
                   <td>{d?.description}</td>
@@ -173,7 +175,7 @@ const News = () => {
         </table>
       </div>
       <div className="table_foot">
-        {loading && total > limit && (
+        {!loading && total > limit && (
           <Pagination
             total={total}
             current={current}
@@ -200,6 +202,15 @@ const News = () => {
           open={detailOpen}
           setOpen={setDetailOpen}
           data={detail}
+        />
+      )}
+
+      {updateModal && (
+        <UpdateNewsModal
+          fetchRecords={fetchRecords}
+          data={updateData}
+          open={updateModal}
+          setOpen={setUpdateModal}
         />
       )}
     </section>

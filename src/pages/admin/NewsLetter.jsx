@@ -12,11 +12,12 @@ const NewsLetter = () => {
   const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [search, setSearch] = useState(false);
+  const token = localStorage.getItem("token")
 
   const fetchRecords = useCallback(async () => {
     try {
       setLoading(true);
-      const result = await getNewsletter(current, limit, query);
+      const result = await getNewsletter(current, limit, query,token);
       if (result?.data?.data) {
         setTotal(result?.data?.total);
         setState(result?.data?.data);
@@ -71,7 +72,7 @@ const NewsLetter = () => {
           ) : (
             <tbody>
               {state?.map((d, i) => (
-                <tr className={i % 2 === 0 ? "active" : ""}>
+                <tr className={i % 2 === 0 ? "active" : ""} key={i}>
                   <td>{new Date(d.createdAt).toDateString()}</td>
 
                   <td>
@@ -84,7 +85,7 @@ const NewsLetter = () => {
         </table>
       </div>
       <div className="table_foot">
-        {loading && total > limit && (
+        {!loading && total > limit && (
           <Pagination
             total={total}
             current={current}
