@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { serviceData } from "../constants/services";
 import img from "../assets/img/cute.png";
 import logoDark from "../assets/img/logo.png";
 import { useDispatch, useSelector } from "react-redux";
@@ -33,6 +32,7 @@ const Navbar = ({ setModalOpen }) => {
       <header ref={categoryRef}>
         <div className="left">
           <img
+            N
             src={logoDark}
             alt="save tax india"
             onClick={() => Navigate("/")}
@@ -44,9 +44,11 @@ const Navbar = ({ setModalOpen }) => {
         </div>
         <div className="right">
           <Link
-            to={"/"}
+            to={"/#banner"}
             className={
-              location.pathname === "/" && location.hash === "" ? "active" : ""
+              location.pathname === "/#banner" && location.hash === ""
+                ? "active"
+                : ""
             }
           >
             Home
@@ -70,16 +72,16 @@ const Navbar = ({ setModalOpen }) => {
           <i className="bx bx-menu" onClick={() => setMenuOpen(true)}></i>
         </div>
 
-        {open && <Services />}
+        {open && <Services setOpen={setOpen} />}
       </header>
       {menuOpen && (
         <div className="mobile_nav">
           <i className="bx bx-x" onClick={() => setMenuOpen(false)}></i>
           <div className="menu">
             <Link
-              to={"/"}
+              to={"/#banner"}
               className={
-                location.pathname === "/" && location.hash === ""
+                location.pathname === "/#banner" && location.hash === ""
                   ? "active"
                   : ""
               }
@@ -140,11 +142,12 @@ const Navbar = ({ setModalOpen }) => {
 
 export default Navbar;
 
-export const Services = () => {
+export const Services = ({ setOpen }) => {
   const { services } = useSelector((state) => state.services);
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const Navigate = useNavigate();
 
   const fetchRecords = async () => {
     try {
@@ -180,7 +183,15 @@ export const Services = () => {
                 ?.filter((f) => f?.category === "Compliance")
                 ?.map((d) => (
                   <li key={d._id}>
-                    <Link to={`/services/${encodeURI(d._id)}`}>{d?.title}</Link>
+                    <a
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        Navigate(`/services/${encodeURI(d._id)}`);
+                        setOpen(false);
+                      }}
+                    >
+                      {d?.title}
+                    </a>
                   </li>
                 ))}
         </ul>
@@ -194,7 +205,15 @@ export const Services = () => {
                 ?.filter((f) => f?.category === "Registrations")
                 ?.map((d) => (
                   <li key={d?._id}>
-                    <Link to={`/services/${encodeURI(d._id)}`}>{d?.title}</Link>
+                    <a
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        Navigate(`/services/${encodeURI(d._id)}`);
+                        setOpen(false);
+                      }}
+                    >
+                      {d?.title}
+                    </a>
                   </li>
                 ))}
         </ul>
@@ -208,7 +227,15 @@ export const Services = () => {
                 ?.filter((f) => f?.category === "Other Services")
                 ?.map((d) => (
                   <li key={d?._id}>
-                    <Link to={`/services/${encodeURI(d._id)}`}>{d?.title}</Link>
+                    <a
+                      style={{ cursor: "pointer" }}
+                      onClick={() => {
+                        Navigate(`/services/${encodeURI(d._id)}`);
+                        setOpen(false);
+                      }}
+                    >
+                      {d?.title}
+                    </a>{" "}
                   </li>
                 ))}
         </ul>

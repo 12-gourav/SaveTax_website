@@ -94,24 +94,26 @@ export const getNews = async (page, size, query, token) => {
   });
 };
 
-export const createNews = async (title, description, status, token) => {
+export const createNews = async (title, description, status,link, token) => {
   return axios.get(url + "create/news", {
     params: {
       title,
       description,
       status,
+      link
     },
     headers: { token },
   });
 };
 
-export const updateNews = async (title, description, status, id, token) => {
+export const updateNews = async (title, description, status, id,link, token) => {
   return axios.get(url + "update/news", {
     params: {
       title,
       description,
       status,
       id,
+      link
     },
     headers: { token },
   });

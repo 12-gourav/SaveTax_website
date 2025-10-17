@@ -9,6 +9,7 @@ const UpdateNewsModal = ({ open, setOpen, fetchRecords, data }) => {
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
   const [loading, setLoading] = useState(false);
+  const [link, setLink] = useState("");
   const token = localStorage.getItem("token");
 
   const handleSubmit = async () => {
@@ -16,8 +17,16 @@ const UpdateNewsModal = ({ open, setOpen, fetchRecords, data }) => {
       if (title === "") return toast.error("Title is required");
       if (description === "") return toast.error("Description is required");
       if (status === "") return toast.error("Status is required");
+      if (link === "") return toast.error("Link is required");
 
-      const result = await updateNews(title, description, status,data?._id, token);
+      const result = await updateNews(
+        title,
+        description,
+        status,
+        data?._id,
+        link,
+        token
+      );
       if (result?.data?.data) {
         await fetchRecords();
         setOpen(false);
@@ -69,6 +78,15 @@ const UpdateNewsModal = ({ open, setOpen, fetchRecords, data }) => {
             placeholder="Enter News Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div className="form_group">
+          <label>Link</label>
+          <input
+            type="text"
+            placeholder="Enter News Link"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
           />
         </div>
         <div className="form_group">

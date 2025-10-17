@@ -4,6 +4,7 @@ import { getContact } from "../../api/api";
 import QueryDetailModal from "./modals/QueryDetailModal";
 import Loader from "../../components/Loader";
 import NoData from "../../components/NoData";
+import dayjs from "dayjs";
 
 const ConsulntList = () => {
   const [state, setState] = useState([]);
@@ -78,7 +79,7 @@ const ConsulntList = () => {
                   key={i}
                 >
                   <td>{new Date(d.createdAt).toDateString()}</td>
-                  <td>{new Date(d?.appointmentDate).toDateString()}</td>
+                  <td>{dayjs(d?.appointmentDate).format("YYYY-MM-DD h:mm a")}</td>
                   <td>{d.name}</td>
                   <td>
                     <a href={`mailto:${d.email}`}>{d.email}</a>

@@ -8,6 +8,7 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
+  const [link,setLink] = useState("");
   const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token")
 
@@ -16,8 +17,10 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
       if (title === "") return toast.error("Title is required");
       if (description === "") return toast.error("Description is required");
       if (status === "") return toast.error("Status is required");
+            if (link === "") return toast.error("Link is required");
 
-      const result = await createNews(title, description, status,token);
+
+      const result = await createNews(title, description, status,link,token);
       if (result?.data?.data) {
         await fetchRecords();
         setOpen(false);
@@ -61,6 +64,15 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
             placeholder="Enter News Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+          />
+        </div>
+        <div className="form_group">
+          <label>Link</label>
+          <input
+            type="text"
+            placeholder="Enter News Link"
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
           />
         </div>
         <div className="form_group">

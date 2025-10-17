@@ -7,6 +7,7 @@ import CreateNewsModal from "./modals/CreateNewsModal";
 import Swal from "sweetalert2";
 import NewsDetailModal from "./modals/NewsDetailModal";
 import UpdateNewsModal from "./modals/UpdateNewsModal";
+import {LoadingOutlined} from "@ant-design/icons";
 
 const News = () => {
   const [state, setState] = useState([]);
@@ -114,9 +115,9 @@ const News = () => {
             </tr>
           </thead>
           {loading ? (
-            <Loader map={[1, 2, 3, 4]} colMap={[1, 2, 3, 4]} />
+            <Loader map={[1, 2, 3, 4,5]} colMap={[1, 2, 3, 4,5]} />
           ) : state.length === 0 ? (
-            <NoData colspan={4} />
+            <NoData colspan={5} />
           ) : (
             <tbody>
               {state?.map((d, i) => (

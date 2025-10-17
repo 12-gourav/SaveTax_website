@@ -1,6 +1,6 @@
-import { Modal } from "antd";
+import { DatePicker, Modal, TimePicker } from "antd";
 import img from "../assets/img/cute2.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createContact } from "../api/api";
 import toast from "react-hot-toast";
 import { LoadingOutlined } from "@ant-design/icons";
@@ -11,19 +11,49 @@ const ConsultModal = ({ open, setOpen }) => {
   const [phone, setPhone] = useState("");
   const [query, setQuery] = useState("");
   const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
   const [loading, setLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const handleSubmit = async () => {
     try {
-      if (name === "") return toast.error("Name is required");
-      if (email === "") return toast.error("Email is required");
-      if (phone === "") return toast.error("Phone is required");
-      if (query === "") return toast.error("Query is required");
-      if (date === "") return toast.error("Consultantion Date is required");
+      if (!name.trim()) return toast.error("Name is required");
+      if (!/^[a-zA-Z\s]+$/.test(name))
+        return toast.error("Name must contain only letters and spaces");
+
+      // Email validation
+      if (!email.trim()) return toast.error("Email is required");
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email))
+        return toast.error("Please enter a valid email");
+
+      // Phone validation (10-digit number)
+      if (!phone.trim()) return toast.error("Phone is required");
+      const phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(phone))
+        return toast.error("Please enter a valid 10-digit phone number");
+
+      // Query validation
+      if (!query.trim()) return toast.error("Query is required");
+
+      // Date validation
+      if (!date.trim()) return toast.error("Consultation Date is required");
+      if (isNaN(new Date(date).getTime()))
+        return toast.error("Please enter a valid date");
+
+      if (isMobile && time === "")
+        return toast.error("Consultation Time is required ");
 
       setLoading(true);
 
-      const result = await createContact(name, email, phone, query, "Consulnt",date);
+      const result = await createContact(
+        name,
+        email,
+        phone,
+        query,
+        "Consulnt",
+        isMobile ? `${date} ${time?.format("h:mm A")}` : date
+      );
       if (result?.data?.data) {
         toast.success(
           "Thank you for contacting us. We’ve received your query and will get back to you shortly."
@@ -32,6 +62,7 @@ const ConsultModal = ({ open, setOpen }) => {
         setEmail("");
         setPhone("");
         setQuery("");
+        setTime("")
         setOpen(false);
       }
     } catch (error) {
@@ -40,6 +71,12 @@ const ConsultModal = ({ open, setOpen }) => {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <Modal
@@ -89,15 +126,41 @@ const ConsultModal = ({ open, setOpen }) => {
               placeholder="Enter your contact number"
             />
           </div>
-          <div className="form_group">
-            <label>Consultation Date </label>
-            <input
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
-              type="date"
-              placeholder="Enter your consultantion date"
-            />
-          </div>
+          {isMobile ? (
+            <>
+              <div className="form_group2">
+                <label>Consultation Date </label>
+
+                <DatePicker
+                  format="YYYY-MM-DD"
+                  onChange={(value1, value2) => setDate(value2)}
+                />
+              </div>
+              <div className="form_group2">
+                <label>Consultation Time </label>
+
+                <TimePicker
+                  use12Hours
+                  format="h:mm a"
+                  minuteStep={5}
+                  value={time}
+                  onChange={(value) => setTime(value)}
+                  placeholder="Select time"
+                />
+              </div>
+            </>
+          ) : (
+            <div className="form_group2">
+              <label>Consultation Time </label>
+
+              <DatePicker
+                showTime={{ format: "HH:mm a" }}
+                format="YYYY-MM-DD h:mm a"
+                onChange={(value1, value2) => setDate(value2)}
+              />
+            </div>
+          )}
+
           <div className="form_group">
             <label>Query</label>
             <textarea

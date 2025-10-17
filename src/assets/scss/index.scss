@@ -17,6 +17,22 @@ $text: #a8a8a8;
   border-color: transparent !important;
 }
 
+// :where(.css-dev-only-do-not-override-1odpy5d).ant-picker-outlined:hover {
+// border-color: transparent !important;
+// background: #fafafa !important;
+
+// }
+// :where(.css-dev-only-do-not-override-1odpy5d).ant-picker-outlined:focus, :where(.css-dev-only-do-not-override-1odpy5d).ant-picker-outlined:focus-within{
+//   border-color: transparent !important;
+//   box-shadow: none !important;
+// }
+// :where(.css-dev-only-do-not-override-1odpy5d).ant-picker-outlined {
+// height: 39px !important;
+// border-color: transparent !important;
+// background: #fafafa !important;
+// }
+
+
 :where(.css-dev-only-do-not-override-xepvsj).ant-pagination
   .ant-pagination-item-active
   a {
@@ -389,6 +405,17 @@ header {
       padding: 10px;
       cursor: pointer;
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+    
+    .form_group2 {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1rem;
+      label {
+        color: #494949;
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+      }
     }
     .form_group {
       display: flex;
@@ -3214,6 +3241,10 @@ section.service_list {
       font-size: 0.8rem;
       text-align: justify;
     }
+    a{
+      font-size: 0.8rem;
+      color: #10b981;
+    }
   }
 }
 
@@ -3252,6 +3283,7 @@ button.p {
   padding: 0.5rem 1rem;
   margin-top: 0.5rem;
   border-radius: 5px;
+  font-size: 0.8rem;
 }
 
 button.u {
@@ -3262,4 +3294,5 @@ button.u {
   padding: 0.5rem 1rem;
   margin-top: 0.5rem;
   border-radius: 5px;
+  font-size: 0.8rem;
 }

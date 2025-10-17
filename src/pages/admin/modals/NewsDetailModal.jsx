@@ -29,6 +29,12 @@ const NewsDetailModal = ({ open, setOpen, data }) => {
       </div>
       <div className="word_wrap">
         <div className="text_wrap">
+          <h4>News Link</h4>
+         <a href={data?.link} target="_blank" rel="noopener noreferrer">{data?.link}</a>
+        </div>
+      </div>
+      <div className="word_wrap">
+        <div className="text_wrap">
           <h4>News Status</h4>
           <button className={data?.status ? "p" : "u"}>
             {data?.status ? "Publish" : "Unpublish"}

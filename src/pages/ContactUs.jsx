@@ -19,10 +19,24 @@ const ContactUs = () => {
 
   const handleSubmit = async () => {
     try {
-      if (name === "") return toast.error("Name is required");
-      if (email === "") return toast.error("Email is required");
-      if (phone === "") return toast.error("Phone is required");
-      if (query === "") return toast.error("Query is required");
+      if (!name.trim()) return toast.error("Name is required");
+      if (!/^[a-zA-Z\s]+$/.test(name))
+        return toast.error("Name must contain only letters and spaces");
+
+      // Email validation
+      if (!email.trim()) return toast.error("Email is required");
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email))
+        return toast.error("Please enter a valid email");
+
+      // Phone validation (10-digit number)
+      if (!phone.trim()) return toast.error("Phone is required");
+      const phoneRegex = /^\d{10}$/;
+      if (!phoneRegex.test(phone))
+        return toast.error("Please enter a valid 10-digit phone number");
+
+      // Query validation
+      if (!query.trim()) return toast.error("Query is required");
 
       setLoading(true);
 

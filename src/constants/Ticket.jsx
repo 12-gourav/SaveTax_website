@@ -3,6 +3,7 @@ import "../assets/scss/ticket.scss";
 import { news } from "../constants/news";
 import { Tooltip } from "antd";
 import { fetchNewsAPI } from "../api/api";
+import { useNavigate } from "react-router-dom";
 
 export default function Ticket() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -11,6 +12,8 @@ export default function Ticket() {
   const [loading, setLoading] = useState(false);
   const scrollRef = useRef(null);
   const animationRef = useRef();
+
+  const Navigate = useNavigate();
 
   const FetchNews = async () => {
     try {
@@ -50,14 +53,14 @@ export default function Ticket() {
     };
   }, [isPaused]);
 
-const loadingNews = [
-  "Hang tight — fresh news coming soon!",
-  "Just a moment, getting today’s headlines...",
-  "Almost there! News is loading...",
-  "We’re grabbing the latest buzz for you...",
-  "Your news feed is on the way...",
-  "Getting the scoop right now...",
-];
+  const loadingNews = [
+    "Hang tight — fresh news coming soon!",
+    "Just a moment, getting today’s headlines...",
+    "Almost there! News is loading...",
+    "We’re grabbing the latest buzz for you...",
+    "Your news feed is on the way...",
+    "Getting the scoop right now...",
+  ];
 
   return (
     <div
@@ -89,7 +92,14 @@ const loadingNews = [
             : state.concat(state).map((item, index) => (
                 <div key={`${item._id}-${index}`} className="ticker-item">
                   <Tooltip placement="bottom" title={item.description}>
-                    <p className="symbol">{item?.title}</p>
+                    <a
+                      href={item?.link || ""}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="symbol"
+                    >
+                      {item?.title}
+                    </a>
                   </Tooltip>
 
                   {index < state.length * 2 - 1 && (

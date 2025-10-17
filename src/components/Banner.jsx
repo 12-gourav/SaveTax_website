@@ -26,10 +26,15 @@ import b3_1365 from "../assets/img/optimize/b3/b3_xqurav_c_scale,w_1365.jpg";
 import b3_1400 from "../assets/img/optimize/b3/b3_xqurav_c_scale,w_1400.jpg";
 
 import { Carousel } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
+
+  const Navigate = useNavigate();
+
+
   return (
-    <section className="banner">
+    <section className="banner" id="banner">
       <Carousel style={{ width: "100%" }} autoplay>
         <div className="img_box">
           <picture>
@@ -49,15 +54,15 @@ const Banner = () => {
             />
           </picture>
           <div className="img_content">
-            <h1>Save Tax India</h1>
-            <h2>Consultancy Services</h2>
+            <h1>Save Tax</h1>
+            <h2>Consultancy Services India</h2>
             <p>
               Filing taxes doesn’t have to be confusing, time-consuming, or
               stressful. At Save Tax, we believe that every individual and
               business deserves a simple, transparent, and hassle-free way to
               stay compliant while maximizing their tax savings.
             </p>
-            <button>Our Services</button>
+            <button style={{cursor:"pointer"}} onClick={()=>Navigate("/#services")}>Our Services</button>
           </div>
         </div>
         <div className="img_box">
@@ -81,15 +86,15 @@ const Banner = () => {
             />
           </picture>
           <div className="img_content">
-            <h1>Save Tax India</h1>
-            <h2>Consultancy Services</h2>
+            <h1>Save Tax </h1>
+            <h2>Consultancy Services India</h2>
             <p>
               Filing taxes doesn’t have to be confusing, time-consuming, or
               stressful. At Save Tax, we believe that every individual and
               business deserves a simple, transparent, and hassle-free way to
               stay compliant while maximizing their tax savings.
             </p>
-            <button>Our Services</button>
+            <button style={{cursor:"pointer"}} onClick={()=>Navigate("/#services")}>Our Services</button>
           </div>
         </div>
         <div className="img_box">
@@ -115,15 +120,15 @@ const Banner = () => {
             />
           </picture>
           <div className="img_content">
-            <h1>Save Tax India</h1>
-            <h2>Consultancy Services</h2>
+            <h1>Save Tax</h1>
+            <h2>Consultancy Services India</h2>
             <p>
               Filing taxes doesn’t have to be confusing, time-consuming, or
               stressful. At Save Tax, we believe that every individual and
               business deserves a simple, transparent, and hassle-free way to
               stay compliant while maximizing their tax savings.
             </p>
-            <button>Our Services</button>
+            <button style={{cursor:"pointer"}} onClick={()=>Navigate("/#services")}>Our Services</button>
           </div>
         </div>
       </Carousel>
