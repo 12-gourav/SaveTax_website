@@ -66,7 +66,9 @@ const Navbar = ({ setModalOpen }) => {
           >
             Contact Us
           </Link>
-          <button onClick={() => setModalOpen(true)}>Consult Now</button>
+          <button onClick={() => setModalOpen(true)}>
+            Request Consultation
+          </button>
         </div>
         <div className="right2">
           <i className="bx bx-menu" onClick={() => setMenuOpen(true)}></i>
@@ -116,7 +118,7 @@ const Navbar = ({ setModalOpen }) => {
                 setModalOpen(true);
               }}
             >
-              Consult Now
+              Request Consultation{" "}
             </button>
           </div>
           <div className="form_group">

@@ -12,6 +12,7 @@ const ConsultModal = ({ open, setOpen }) => {
   const [query, setQuery] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
+  const [time2, setTime2] = useState("");
   const [loading, setLoading] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -41,7 +42,7 @@ const ConsultModal = ({ open, setOpen }) => {
       if (isNaN(new Date(date).getTime()))
         return toast.error("Please enter a valid date");
 
-      if (isMobile && time === "")
+      if (time === "" || time2 === "")
         return toast.error("Consultation Time is required ");
 
       setLoading(true);
@@ -52,7 +53,9 @@ const ConsultModal = ({ open, setOpen }) => {
         phone,
         query,
         "Consulnt",
-        isMobile ? `${date} ${time?.format("h:mm A")}` : date
+        date,
+        time,
+        time2
       );
       if (result?.data?.data) {
         toast.success(
@@ -62,7 +65,8 @@ const ConsultModal = ({ open, setOpen }) => {
         setEmail("");
         setPhone("");
         setQuery("");
-        setTime("")
+        setTime("");
+        setTime2("")
         setOpen(false);
       }
     } catch (error) {
@@ -126,40 +130,39 @@ const ConsultModal = ({ open, setOpen }) => {
               placeholder="Enter your contact number"
             />
           </div>
-          {isMobile ? (
-            <>
-              <div className="form_group2">
-                <label>Consultation Date </label>
 
-                <DatePicker
-                  format="YYYY-MM-DD"
-                  onChange={(value1, value2) => setDate(value2)}
-                />
-              </div>
-              <div className="form_group2">
-                <label>Consultation Time </label>
+          <div className="form_group2">
+            <label>Consultation Date </label>
 
-                <TimePicker
-                  use12Hours
-                  format="h:mm a"
-                  minuteStep={5}
-                  value={time}
-                  onChange={(value) => setTime(value)}
-                  placeholder="Select time"
-                />
-              </div>
-            </>
-          ) : (
-            <div className="form_group2">
-              <label>Consultation Time </label>
+            <DatePicker
+              format="YYYY-MM-DD"
+              onChange={(value1, value2) => setDate(value2)}
+            />
+          </div>
+          <div className="form_group2">
+            <label>When are you free from? </label>
 
-              <DatePicker
-                showTime={{ format: "HH:mm a" }}
-                format="YYYY-MM-DD h:mm a"
-                onChange={(value1, value2) => setDate(value2)}
-              />
-            </div>
-          )}
+            <TimePicker
+              use12Hours
+              format="h:mm a"
+              minuteStep={5}
+              value={time}
+              onChange={(value) => setTime(value)}
+              placeholder="Select time"
+            />
+          </div>
+          <div className="form_group2">
+            <label>Until what time are you free? </label>
+
+            <TimePicker
+              use12Hours
+              format="h:mm a"
+              minuteStep={5}
+              value={time2}
+              onChange={(value) => setTime2(value)}
+              placeholder="Select time"
+            />
+          </div>
 
           <div className="form_group">
             <label>Query</label>

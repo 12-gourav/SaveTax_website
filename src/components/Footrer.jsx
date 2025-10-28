@@ -13,7 +13,7 @@ const Footrer = () => {
       <div className="container">
         <div className="left">
           <h5>
-            Save<span> Tax</span>
+            <span>Save Tax Consultancy Services</span>
           </h5>
           <p>
             SaveTax helps individuals and businesses simplify tax filing,
@@ -23,13 +23,13 @@ const Footrer = () => {
           <div className="form_wrap">
             <div className="form_group">
               <label>Phone Number</label>
-              <a href="tel:+918048775862">+91 8048775862</a>
+              <a href="tel:+919136339255">+91 9136339255</a>
             </div>
             <div className="form_group">
               <label>Email</label>
-              <a href="mailto: artikanojia07@gmail.com">
+              <a href="mailto:  artikanojia@savetaxindia.com">
                 {" "}
-                artikanojia07@gmail.com
+               artikanojia@savetaxindia.com
               </a>
             </div>
           </div>

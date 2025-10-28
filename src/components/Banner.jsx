@@ -29,9 +29,7 @@ import { Carousel } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
-
   const Navigate = useNavigate();
-
 
   return (
     <section className="banner" id="banner">
@@ -55,14 +53,19 @@ const Banner = () => {
           </picture>
           <div className="img_content">
             <h1>Save Tax</h1>
-            <h2>Consultancy Services India</h2>
+            <h2>Consultancy Services</h2>
+
             <p>
-              Filing taxes doesn’t have to be confusing, time-consuming, or
-              stressful. At Save Tax, we believe that every individual and
-              business deserves a simple, transparent, and hassle-free way to
-              stay compliant while maximizing their tax savings.
+              At Save Tax India Consultancy Services, we believe in helping you
+              save more and grow more by simplifying the world of taxation,
+              compliance, and business setup
             </p>
-            <button style={{cursor:"pointer"}} onClick={()=>Navigate("/#services")}>Our Services</button>
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={() => Navigate("/#services")}
+            >
+              Our Services
+            </button>
           </div>
         </div>
         <div className="img_box">
@@ -87,14 +90,19 @@ const Banner = () => {
           </picture>
           <div className="img_content">
             <h1>Save Tax </h1>
-            <h2>Consultancy Services India</h2>
+            <h2>Consultancy Services</h2>
             <p>
               Filing taxes doesn’t have to be confusing, time-consuming, or
               stressful. At Save Tax, we believe that every individual and
               business deserves a simple, transparent, and hassle-free way to
               stay compliant while maximizing their tax savings.
             </p>
-            <button style={{cursor:"pointer"}} onClick={()=>Navigate("/#services")}>Our Services</button>
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={() => Navigate("/#services")}
+            >
+              Our Services
+            </button>
           </div>
         </div>
         <div className="img_box">
@@ -121,21 +129,25 @@ const Banner = () => {
           </picture>
           <div className="img_content">
             <h1>Save Tax</h1>
-            <h2>Consultancy Services India</h2>
+            <h2>Consultancy Services</h2>
             <p>
-              Filing taxes doesn’t have to be confusing, time-consuming, or
-              stressful. At Save Tax, we believe that every individual and
-              business deserves a simple, transparent, and hassle-free way to
-              stay compliant while maximizing their tax savings.
+              At Save Tax India Consultancy Services, we believe in helping you
+              save more and grow more by simplifying the world of taxation,
+              compliance, and business setup
             </p>
-            <button style={{cursor:"pointer"}} onClick={()=>Navigate("/#services")}>Our Services</button>
+            <button
+              style={{ cursor: "pointer" }}
+              onClick={() => Navigate("/#services")}
+            >
+              Our Services
+            </button>
           </div>
         </div>
       </Carousel>
 
-      <div className="whatsup-btn">
+      <a className="whatsup-btn" href="tel:+919136339255">
         <i className="bx bxl-whatsapp"></i>
-      </div>
+      </a>
     </section>
   );
 };

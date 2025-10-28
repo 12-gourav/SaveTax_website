@@ -17,6 +17,12 @@ $text: #a8a8a8;
   border-color: transparent !important;
 }
 
+#chat-bot-launcher-container.chat-bot-avatar-launcher
+  .chat-bot-launcher-button {
+  width: 50px !important;
+  height: 50px !important;
+}
+
 // :where(.css-dev-only-do-not-override-1odpy5d).ant-picker-outlined:hover {
 // border-color: transparent !important;
 // background: #fafafa !important;
@@ -31,7 +37,6 @@ $text: #a8a8a8;
 // border-color: transparent !important;
 // background: #fafafa !important;
 // }
-
 
 :where(.css-dev-only-do-not-override-xepvsj).ant-pagination
   .ant-pagination-item-active
@@ -110,12 +115,13 @@ header {
       color: #0a66c2;
     }
     button {
-      background: #0a66c2;
+      background: linear-gradient(90deg, #0a66c2, #004cbd);
+      text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
       border: none;
       outline: none;
       padding: 0.5rem 0.8rem;
       color: #fff;
-      border-radius: 5px;
+      border-radius: 50px;
       cursor: pointer;
     }
   }
@@ -196,7 +202,8 @@ header {
     }
     button {
       width: 100%;
-      background: #0a66c2;
+      background: linear-gradient(90deg, #0a66c2, #004cbd);
+      text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
       color: #fff;
       border: none;
       outline: none;
@@ -368,7 +375,9 @@ header {
 
 .consultant_modal {
   width: 100%;
+  height: calc(100vh - 150px);
   display: flex;
+  overflow-y: auto;
   .left {
     width: 50%;
     height: fit-content;
@@ -406,7 +415,7 @@ header {
       cursor: pointer;
       box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     }
-    
+
     .form_group2 {
       display: flex;
       flex-direction: column;
@@ -510,6 +519,7 @@ section.banner {
         font-size: 2.5rem;
         margin-top: 2.5rem;
       }
+
       p {
         font-size: 0.9rem;
         color: #e8e8e8;
@@ -518,12 +528,17 @@ section.banner {
         margin: 0.5rem 0;
       }
       button {
-        background: #0a66c2;
+        background: linear-gradient(90deg, #0a66c2, #004cbd);
+        text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
         border: none;
         color: #fff;
-        padding: 10px 50px;
+        padding: 10px 40px;
         border-radius: 50px;
         margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
       }
     }
   }
@@ -556,7 +571,8 @@ section.banner {
   .left {
     width: 100%;
     .btn_text {
-      background: #0a66c2;
+       background: linear-gradient(90deg, #0a66c2, #004cbd);
+        text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
       padding: 5px 15px;
       color: #fff;
       border-radius: 50px;
@@ -675,7 +691,8 @@ section.about {
         padding: 10px 20px;
         border: none;
         outline: none;
-        background: #0a66c2;
+        background: linear-gradient(90deg, #0a66c2, #004cbd);
+        text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
         color: #fff;
         border-radius: 50px;
         font-weight: 600;
@@ -840,8 +857,8 @@ section.about {
           }
         }
         .tab_item:hover {
-          background: #0a66c2;
-          border-bottom: 1.5px solid #7573d6;
+          background: linear-gradient(90deg, #0a66c2, #004cbd);
+          text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
           i {
             color: #ffffff;
           }
@@ -850,8 +867,8 @@ section.about {
           }
         }
         .tab_item.active {
-          background: #0a66c2;
-          border-bottom: 1.5px solid #0a66c2;
+           background: linear-gradient(90deg, #0a66c2, #004cbd);
+        text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
           i {
             color: #ffffff;
           }
@@ -994,7 +1011,8 @@ section.about {
     button {
       border: none;
       outline: none;
-      background: #0a66c2;
+      background: linear-gradient(90deg, #0a66c2, #004cbd);
+      text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
       color: #fff;
       width: 30px;
       height: 30px;
@@ -1260,8 +1278,7 @@ section.newsletter {
     .form_group {
       width: fit-content;
       background: rgba(0, 0, 0, 0.7);
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
+      border-radius: 5px;
       margin-top: 1rem;
       input {
         border: none;
@@ -1273,7 +1290,8 @@ section.newsletter {
         color: #fff;
       }
       button {
-        background: #0a66c2;
+        background: linear-gradient(90deg, #0a66c2, #004cbd);
+        text-shadow: 6px 4px 2px rgba(0, 0, 0, 0.2);
         color: #fff;
         height: 100%;
         border: none;
@@ -2050,7 +2068,7 @@ section.service_detail {
     }
   }
 
-  .loading{
+  .loading {
     width: 100%;
     margin-top: 5rem;
     padding: 10px 100px;
@@ -2108,7 +2126,7 @@ section.service_detail {
     display: flex;
     .left {
       width: 30%;
-       h3 {
+      h3 {
         font-weight: 500;
         font-size: 0.9rem;
         color: #000;
@@ -2149,16 +2167,15 @@ section.service_detail {
 
 @media (max-width: 900px) {
   section.service_detail {
-        .loading{
-        padding: 10px;
-      }
+    .loading {
+      padding: 10px;
+    }
     .detail_header {
       padding: 10px;
       margin-top: 4rem;
       h1 {
         font-size: 1.5rem;
       }
-  
     }
     .detail_body {
       padding: 10px;
@@ -2177,8 +2194,8 @@ section.service_detail {
 
 .whatsup-btn {
   position: fixed;
-  bottom: 20px;
-  right: 10px;
+  bottom: 75px;
+  right: 25px;
   background: #17c964;
   color: #fff;
   width: 40px;
@@ -2190,6 +2207,8 @@ section.service_detail {
   justify-content: center;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   font-size: 1.8rem;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .split {
@@ -2208,7 +2227,7 @@ section.service_detail {
   h2 {
     color: #0a66c2;
     font-size: 1.5rem;
-    span{
+    span {
       color: #10b981;
     }
   }
@@ -3241,7 +3260,7 @@ section.service_list {
       font-size: 0.8rem;
       text-align: justify;
     }
-    a{
+    a {
       font-size: 0.8rem;
       color: #10b981;
     }

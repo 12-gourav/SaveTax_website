@@ -77,11 +77,11 @@ const ContactUs = () => {
               Email, call, or complete the form to learn how Snappy can solve
               your messaging problem.
             </p>
-            <a href="mailto: artikanojia07@gmail.com">
+            <a href="mailto: artikanojia@savetaxindia.com">
               {" "}
-              artikanojia07@gmail.com
+            artikanojia@savetaxindia.com
             </a>
-            <a href="tel:+917715843292">+91 7715843292</a>
+            <a href="tel:+919136339255">+91 9136339255</a>
 
             <div className="col_wrapper">
               <div className="col1">

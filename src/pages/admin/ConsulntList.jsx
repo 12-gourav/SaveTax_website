@@ -56,6 +56,7 @@ const ConsulntList = () => {
             <tr>
               <th style={{ width: "120px" }}>Date</th>
               <th style={{ width: "150px" }}>Consultation Date</th>
+                <th style={{ width: "150px" }}>Slot Time</th>
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
@@ -79,7 +80,8 @@ const ConsulntList = () => {
                   key={i}
                 >
                   <td>{new Date(d.createdAt).toDateString()}</td>
-                  <td>{dayjs(d?.appointmentDate).format("YYYY-MM-DD h:mm a")}</td>
+                  <td>{dayjs(d?.appointmentDate).format("YYYY-MM-DD")}</td>
+                  <td>{dayjs(d?.startTime).format(" h:mm a")} - {dayjs(d?.endTime).format("h:mm a")}</td>
                   <td>{d.name}</td>
                   <td>
                     <a href={`mailto:${d.email}`}>{d.email}</a>

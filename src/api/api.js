@@ -8,7 +8,9 @@ export const createContact = async (
   phone,
   query,
   category,
-  date
+  date,
+  time,
+  time2
 ) => {
   return axios.post(url + "create/query", {
     name,
@@ -17,6 +19,8 @@ export const createContact = async (
     query,
     category,
     date: date || null,
+    time: time || null,
+    time2: time2 || null,
   });
 };
 
@@ -94,26 +98,33 @@ export const getNews = async (page, size, query, token) => {
   });
 };
 
-export const createNews = async (title, description, status,link, token) => {
+export const createNews = async (title, description, status, link, token) => {
   return axios.get(url + "create/news", {
     params: {
       title,
       description,
       status,
-      link
+      link,
     },
     headers: { token },
   });
 };
 
-export const updateNews = async (title, description, status, id,link, token) => {
+export const updateNews = async (
+  title,
+  description,
+  status,
+  id,
+  link,
+  token
+) => {
   return axios.get(url + "update/news", {
     params: {
       title,
       description,
       status,
       id,
-      link
+      link,
     },
     headers: { token },
   });
@@ -163,12 +174,10 @@ export const fetchNewsAPI = async () => {
   return axios.get(url + "fetch/news", {});
 };
 
-
 export const fetchServicesAPI = async () => {
   return axios.get(url + "fetch/service", {});
 };
 
-
 export const fetchServiceDetailAPI = async (id) => {
-  return axios.get(url + "service/detail", {params:{id}});
+  return axios.get(url + "service/detail", { params: { id } });
 };
