@@ -146,7 +146,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
       <section className="create_service">
         <div className="form_wrap">
           <div className="form_group">
-            <label>Name</label>
+            <label>Name*</label>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -156,7 +156,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
             />
           </div>
           <div className="form_group">
-            <label>Category</label>
+            <label>Category*</label>
             <select
               placeholder="Select Service Category Name"
               value={category}
@@ -173,7 +173,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
         </div>
         <div className="form_wrap">
           <div className="form_group">
-            <label>Short Description</label>
+            <label>Short Description*</label>
             <input
               type="text"
               value={short}
@@ -184,7 +184,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
         </div>
         <div className="form_wrap">
           <div className="form_group">
-            <label>Long Description</label>
+            <label>Long Description*</label>
             <ReactQuill
               style={{
                 marginBottom: "2rem",
@@ -199,7 +199,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
         </div>
         <div className="form_wrap2">
           <div className="form_group">
-            <label>Benifits</label>
+            <label>Benifits*</label>
             <div className="group">
               <input
                 value={benifitText}
@@ -222,7 +222,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
         </div>
         <div className="form_wrap">
           <div className="form_group">
-            <label>SEO Title</label>
+            <label>SEO Title*</label>
             <input
               value={seoTitle}
               onChange={(e) => setSeoTitle(e.target.value)}
@@ -231,7 +231,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
             />
           </div>
           <div className="form_group">
-            <label>SEO Description</label>
+            <label>SEO Description*</label>
             <input
               value={seoDescription}
               onChange={(e) => setSeoDescription(e.target.value)}
@@ -242,7 +242,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
         </div>
         <div className="form_wrap2">
           <div className="form_group">
-            <label>SEO Keywords</label>
+            <label>SEO Keywords*</label>
             <div className="group">
               <input
                 onChange={(e) => setKeywordQuery(e.target.value)}
@@ -265,7 +265,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
         </div>
         <div className="form_wrap">
           <div className="form_group">
-            <label>Service Card Color</label>
+            <label>Service Card Color*</label>
             <div className="color_wrap">
               {textColor?.map((d, i) => (
                 <div
@@ -288,7 +288,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
         </div>
         <div className="form_wrap">
           <div className="form_group">
-            <label>Card Image</label>
+            <label>Card Image*</label>
             <input
               type="file"
               accept=".jpg,.jpeg,.png,.svg"
@@ -297,7 +297,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
             <img src={data?.cardImg?.url} />
           </div>
           <div className="form_group">
-            <label>Banner Image</label>
+            <label>Banner Image*</label>
             <input
               type="file"
               accept=".jpg,.jpeg,.png,.svg"
@@ -306,7 +306,7 @@ const UpdateService = ({ setOpen, fetchRecords, data }) => {
             <img src={data?.bannerImg?.url} />
           </div>
           <div className="form_group">
-            <label>Status</label>
+            <label>Status*</label>
             <select
               onChange={(e) => setPublish(e.target.value)}
               value={publish}

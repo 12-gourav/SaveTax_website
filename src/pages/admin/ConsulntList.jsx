@@ -64,9 +64,9 @@ const ConsulntList = () => {
             </tr>
           </thead>
           {loading ? (
-            <Loader map={[1, 2, 3, 4, 5,6]} colMap={[1, 2, 3, 4, 5,6]} />
+            <Loader map={[1, 2, 3, 4, 5,6]} colMap={[1, 2, 3, 4, 5,6,7]} />
           ) : state.length === 0 ? (
-            <NoData colspan={6} />
+            <NoData colspan={7} />
           ) : (
             <tbody>
               {state?.map((d, i) => (

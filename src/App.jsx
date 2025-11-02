@@ -13,6 +13,7 @@ import NewsLetter from "./pages/admin/NewsLetter";
 import { useDispatch } from "react-redux";
 import { loadAPI } from "./api/api";
 import AuthCheck from "./pages/AuthCheck";
+import Error from "./pages/Error";
 const Home = lazy(() => import("./pages/Home"));
 const ContactUs = lazy(() => import("./pages/ContactUs"));
 const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
@@ -59,17 +60,15 @@ const App = () => {
     };
   }, []);
 
-
- 
-
-
   return (
     <>
       <Suspense
         fallback={
           <div className="split">
             <img src={img} alt="Save India Tax" />
-            <h2>Save Tax <span>Consultancy Service</span></h2>
+            <h2>
+              Save Tax <span>Consultancy Service</span>
+            </h2>
           </div>
         }
       >
@@ -82,6 +81,7 @@ const App = () => {
             path="/auth/login"
             element={<Login authLoading={authLoading} />}
           />
+
           <Route
             path="/dashboard"
             element={
@@ -103,6 +103,7 @@ const App = () => {
             <Route path="/dashboard/news" element={<News />} />
             <Route path="/dashboard/newsletter" element={<NewsLetter />} />
           </Route>
+          <Route path="/*" element={<Error />} />
         </Routes>
       </Suspense>
     </>

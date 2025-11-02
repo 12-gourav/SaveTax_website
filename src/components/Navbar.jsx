@@ -125,16 +125,16 @@ const Navbar = ({ setModalOpen }) => {
             <label>
               <i className="bx bxs-envelope"></i>Email Address
             </label>
-            <a href="mailto: artikanojia07@gmail.com">
-              {" "}
-              artikanojia07@gmail.com
-            </a>
+             <a href="mailto:  artikanojia@savetaxindia.com">
+                {" "}
+                artikanojia@savetaxindia.com
+              </a>
           </div>
           <div className="form_group">
             <label>
               <i className="bx bxs-phone"></i>Contact No
             </label>
-            <a href="tel:+918048775862">+91 8048775862</a>
+              <a href="tel:+919136339255">+91 9136339255</a>
           </div>
         </div>
       )}

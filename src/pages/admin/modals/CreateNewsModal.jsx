@@ -49,7 +49,7 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
     >
       <div className="create_news">
         <div className="form_group">
-          <label>Title</label>
+          <label>Title*</label>
           <input
             type="text"
             placeholder="Enter News Title"
@@ -58,7 +58,7 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
           />
         </div>
         <div className="form_group">
-          <label>Description</label>
+          <label>Description*</label>
           <input
             type="text"
             placeholder="Enter News Description"
@@ -67,7 +67,7 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
           />
         </div>
         <div className="form_group">
-          <label>Link</label>
+          <label>Link*</label>
           <input
             type="text"
             placeholder="Enter News Link"
@@ -76,7 +76,7 @@ const CreateNewsModal = ({ open, setOpen, fetchRecords }) => {
           />
         </div>
         <div className="form_group">
-          <label>Status</label>
+          <label>Status*</label>
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
             <option value={""}>Select Status</option>
             <option value={true}>Publish</option>

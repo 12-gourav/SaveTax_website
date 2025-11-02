@@ -145,7 +145,11 @@ const Banner = () => {
         </div>
       </Carousel>
 
-      <a className="whatsup-btn" href="tel:+919136339255">
+      <a
+        className="whatsup-btn"
+        href="https://wa.me/+919136339255"
+        target="_blank"
+      >
         <i className="bx bxl-whatsapp"></i>
       </a>
     </section>

@@ -2,10 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Footrer = () => {
-
-  const {isActive} = useSelector((state)=>state.users)
-
-
+  const { isActive } = useSelector((state) => state.users);
 
   const date = new Date();
   return (
@@ -29,7 +26,7 @@ const Footrer = () => {
               <label>Email</label>
               <a href="mailto:  artikanojia@savetaxindia.com">
                 {" "}
-               artikanojia@savetaxindia.com
+                artikanojia@savetaxindia.com
               </a>
             </div>
           </div>
@@ -37,8 +34,7 @@ const Footrer = () => {
             <div className="form_group">
               <label>Address</label>
               <p>
-                Room no 22, Baban Patel Lane, Sailesh Nagar, Malad West, Mumbai,
-                Maharashtra - 400064, India
+                Sailesh Nagar, Malad West, Mumbai, Maharashtra - 400064, India
               </p>
             </div>
           </div>
@@ -50,7 +46,11 @@ const Footrer = () => {
             <Link to="/contact-us">Contact Us</Link>
             <Link to="/#services">Services</Link>
             <Link to="/#benifits">Benifits</Link>
-             {isActive ? <Link to={"/dashboard"}>Dashboard</Link>:<Link to="/auth/login">Login</Link>}
+            {isActive ? (
+              <Link to={"/dashboard"}>Dashboard</Link>
+            ) : (
+              <Link to="/auth/login">Administration</Link>
+            )}
           </div>
           <div className="r1">
             <h4>Social Links</h4>

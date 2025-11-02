@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import img from "../assets/img/nodata.svg";
 import { Skeleton } from "antd";
 import Footrer from "../components/Footrer";
@@ -81,7 +81,15 @@ const ServiceDetail = () => {
           <h1>{state?.title}</h1>
           <div className="img_box">
             <img src={state?.bannerImg?.url} alt="Save Tax India" />
-            <div className="bg"></div>
+            <div className="bg">
+              <div className="page_bread">
+                <Link to={"/"}>Home</Link>
+                <i className='bx bx-chevron-right'></i>
+                <Link to={"/#services"}>Services</Link>
+                <i className='bx bx-chevron-right'></i>
+                Service Detail
+              </div>
+            </div>
           </div>
         </div>
         <div className="detail_body">

@@ -19,7 +19,7 @@ export const DashboardRoutes = [
   },
   {
     id: 4,
-    title: "Consultant Clients",
+    title: "Consultantions",
     path: "/dashboard/consulnt/clients",
     icon: <i className="bx bxs-user"></i>,
   },

@@ -6,14 +6,14 @@ import { loginAPI } from "../api/api";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-const Login = ({authLoading}) => {
-    const { isActive } = useSelector((state) => state.users);
+const Login = ({ authLoading }) => {
+  const { isActive } = useSelector((state) => state.users);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const Navigate = useNavigate();
-  const location = useLocation()
+  const location = useLocation();
 
   const handleSubmit = async () => {
     try {
@@ -28,22 +28,20 @@ const Login = ({authLoading}) => {
         toast.success("Login Successfull");
         Navigate("/dashboard");
         setEmail("");
-        setPassword("")
+        setPassword("");
       } else {
         toast.error("Login Fail");
       }
     } catch (error) {
       console.log(error);
-      toast.error(error?.response?.data?.msg)
+      toast.error(error?.response?.data?.msg);
     } finally {
       setLoading(false);
     }
   };
 
-
-
-    useEffect(() => {
-    if (isActive && loading===false) {
+  useEffect(() => {
+    if (isActive && loading === false) {
       if (location.state === null) {
         Navigate("/");
       } else {
@@ -52,14 +50,15 @@ const Login = ({authLoading}) => {
     }
   }, [isActive]);
 
-
-
-
-  return authLoading ? "":(
+  return authLoading ? (
+    ""
+  ) : (
     <section className="login">
       <div className="login_form">
         <img src={img} />
-        <h2>Save Tax <span>Consultancy Service</span></h2>
+        <h2>
+          Save Tax <span>Consultancy Service</span>
+        </h2>
         <div className="form_group">
           <label>Email</label>
           <input
@@ -79,9 +78,9 @@ const Login = ({authLoading}) => {
           />
         </div>
         <div className="link-a">
- <Link to={"/"}>Back to home page?</Link>
+          <Link to={"/"}>Back to home page?</Link>
         </div>
-       
+
         <button disabled={loading} onClick={handleSubmit}>
           {loading ? <LoadingOutlined /> : "Login"}
         </button>
